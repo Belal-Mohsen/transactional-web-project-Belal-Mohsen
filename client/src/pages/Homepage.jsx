@@ -7,6 +7,7 @@ import HowItWorks from "../components/HowItWorks";
 import Banner from "../components/Banner";
 import NavBar from "../components/NavBar";
 import OurStory from "../components/OurStory";
+import ImageCarousel from "../components/ImageCarousel";
 
 const Homepage = () => {
   return (
@@ -17,6 +18,7 @@ const Homepage = () => {
 
       <div className="flex flex-1 items-center justify-center">
         <div className="w-full max-w-4xl mx-auto">
+          <ImageCarousel />
           <OurStory />
           <HowItWorks />
         </div>

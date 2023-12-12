@@ -12,7 +12,7 @@ const StepElement = ({
         <div className="absolute w-[68px] h-[88px] top-0 left-[70px] [font-family:'Jolly_Lodger',Helvetica] font-normal text-[#c0876a4c] text-[200px] tracking-[0] leading-[normal] whitespace-nowrap">
           {text}
         </div>
-        <div className="absolute w-[208px] h-[44px] top-[44px] left-0 [font-family:'Inria_Serif',Helvetica] font-normal text-[#342f19] text-[24px] text-center tracking-[0] leading-[normal]">
+        <div className="absolute w-[208px] h-[44px] top-[44px] left-0 [font-family:'Inria_Serif',Helvetica] font-thin text-[#342f19] text-[24px] text-center tracking-[0] leading-[normal]">
           {text1}
         </div>
       </div>
