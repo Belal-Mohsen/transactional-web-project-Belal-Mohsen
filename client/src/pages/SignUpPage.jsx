@@ -11,16 +11,16 @@ const SignUpPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <TopBanner />
-
       <NavBar />
-    <Shadow />
+      <Shadow />
+
       <div className="flex flex-1 items-center justify-center">
         <SignUp />
       </div>
 
-    <ChatBox className="!fixed !left-[1346px] !top-[816px]" />
+      <ChatBox className="!fixed !left-[1346px] !top-[816px]" />
+      
       <Newsletter />
-
       <Footer />
     </div>
   );

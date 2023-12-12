@@ -9,7 +9,7 @@ const NavBar = () => {
           alt="Logo color updated"
           src="https://c.animaapp.com/qqWqs49g/img/logo-color-updated-1@2x.png"
         />
-        <div className="hidden md:flex gap-14">
+        <div className="hidden md:flex gap-16 [font-family:'Inria_Serif',Helvetica]">
           <div className="font-bold text-[#342f19] text-lg">Home</div>
           <div className="font-bold text-[#342f19] text-lg">Subscribe</div>
           <div className="font-bold text-[#342f19] text-lg">FAQ</div>

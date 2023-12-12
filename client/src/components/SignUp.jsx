@@ -37,12 +37,14 @@ const SignUp = () => {
               </a>
             </span>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-[#c0876a] text-white rounded py-2 mt-4"
-          >
-            SIGN UP
-          </button>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="w-1/3 bg-[#c0876a] text-white rounded py-2 mt-4"
+            >
+              SIGN UP
+            </button>
+          </div>
         </form>
       </div>
     </div>

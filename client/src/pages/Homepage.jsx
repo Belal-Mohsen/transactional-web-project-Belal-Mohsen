@@ -1,0 +1,31 @@
+import React from "react";
+
+import TopBanner from "../components/TopBanner";
+import Footer from "../components/Footer";
+import Newsletter from "../components/Newsletter";
+import HowItWorks from "../components/HowItWorks";
+import Banner from "../components/Banner";
+import NavBar from "../components/NavBar";
+import OurStory from "../components/OurStory";
+
+const Homepage = () => {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <TopBanner />
+      <NavBar />
+      <Banner />
+
+      <div className="flex flex-1 items-center justify-center">
+        <div className="w-full max-w-4xl mx-auto">
+          <OurStory />
+          <HowItWorks />
+        </div>
+      </div>
+
+      <Newsletter />
+      <Footer />
+    </div>
+  );
+};
+
+export default Homepage;
