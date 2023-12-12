@@ -25,8 +25,8 @@ const ImageCarousel = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    nextArrow: <FaArrowRight />,
-    prevArrow: <FaArrowLeft />,
+    nextArrow: <FaArrowRight style={{ color: 'blue', fontSize: '24px' }} />,
+    prevArrow: <FaArrowLeft style={{ color: 'blue', fontSize: '24px' }} />,
   };
 
   return (
