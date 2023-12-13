@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 const images = [
   "./images/image1.png",
@@ -25,8 +25,8 @@ const ImageCarousel = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    nextArrow: <FaArrowRight style={{ color: 'blue', fontSize: '24px' }} />,
-    prevArrow: <FaArrowLeft style={{ color: 'blue', fontSize: '24px' }} />,
+    nextArrow: <FaChevronCircleRight color="#E7D5CA" />,
+    prevArrow: <FaChevronCircleLeft color="#E7D5CA" />,
   };
 
   return (

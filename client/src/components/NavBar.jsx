@@ -1,9 +1,12 @@
 import React from "react";
+import { PiShoppingCartDuotone } from "react-icons/pi";
+import { MdOutlineAccountCircle } from "react-icons/md";
+// import { FaShoppingCart, FaUser } from "react-icons/fa";
 
 const NavBar = () => {
   return (
     <div className="relative overflow-x-auto bg-white">
-      <div className="flex justify-between items-center p-2">
+      <div className="flex justify-between items-center p-1 mr-5 ml-1">
         <img
           className="h-12 object-cover"
           alt="Logo color updated"
@@ -16,18 +19,10 @@ const NavBar = () => {
           <div className="font-bold text-[#342f19] text-lg">Calendar</div>
           <div className="font-bold text-[#342f19] text-lg">Contact Us</div>
         </div>
-        <div className="flex gap-6">
-          <img
-            className="w-6 h-7"
-            alt="Cart icon"
-            src="https://c.animaapp.com/qqWqs49g/img/carticon.svg"
-          />
-          <img
-            className="w-6 h-8"
-            alt="Account icon"
-            src="https://c.animaapp.com/qqWqs49g/img/accounticon.svg"
-          />
-        </div>
+        <div className="flex gap-4">
+      <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7"/>
+      <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />
+    </div>
       </div>
     </div>
   );
