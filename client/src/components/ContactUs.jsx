@@ -2,9 +2,9 @@ import React from "react";
 
 const ContactUs = () => {
         return (
-            <div className="w-full max-w-2xl mx-auto bg-[#f7f6f2] rounded shadow-md p-6 my-10">
+            <div className="w-full max-w-2xl mx-auto bg-[#f7f6f2] rounded shadow-md p-6 my-10 border">
               <h2 className="text-2xl font-medium text-[#342f19] mb-4 text-center">
-                Contact Us
+                CONTACT US
              </h2>
               <form className="space-y-4">
                 <div className="flex gap-4">
@@ -53,7 +53,7 @@ const ContactUs = () => {
                   type="submit"
                   className="w-full bg-[#c0876a] text-white rounded py-2 mt-4"
                 >
-                  Send Message
+                  SEND MESSAGE
                 </button>
               </form>
             </div>
