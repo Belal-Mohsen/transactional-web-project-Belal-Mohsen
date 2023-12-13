@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        '10': '8px',
+      },
     },
   },
   plugins: [],

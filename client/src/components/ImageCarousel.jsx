@@ -51,7 +51,7 @@ const ImageCarousel = () => {
       <Slider {...settings}>
         {images.map((image, idx) => (
           <div key={idx} className="px-3">
-            <img className="w-full h-auto" src={image} alt={`Slide ${idx}`} />
+            <img className="rounded-10 w-full h-auto" src={image} alt={`Slide ${idx}`} />
           </div>
         ))}
       </Slider>
