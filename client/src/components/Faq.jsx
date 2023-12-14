@@ -52,12 +52,18 @@ const stylesGeneral = {
   },
   line1: {
     top: "15vw",
+    marginTop: "1vw",
+    marginBottom: "1vw",
   },
   line2: {
     top: "21vw",
+    marginTop: "1vw",
+    marginBottom: "1vw",
   },
   line3: {
     top: "28vw",
+    marginTop: "1vw",
+    marginBottom: "1vw",
   },
 };
 
@@ -109,15 +115,14 @@ export default function Faq() {
           triggerStyle={{ fontWeight: "bold" }}
         >
           <p>
-            Welcome to ReadyFestive! We curate and deliver decorations for the
+            Welcome to Unbox Holidays! We curate and deliver decorations for the
             holidays and seasons you love—whether they’re for your home,
             vacation home, or business!
           </p>
           <p>
-            We source from makers large and small, with the goal of finding the
-            most on-trend, quality decorations and festive items— that you would
+            Our goal is to find the most on-trend, quality decorations and festive items— that you would
             otherwise have to purchase from several different stores— and bring
-            them all to one convenient location: your ReadyFestive box! It is
+            them all to one convenient location: your box! It is
             our mission to surprise, inspire and help you prepare for the
             holiday—however that looks for you—so that you can stress less and
             festive more!
@@ -128,32 +133,52 @@ export default function Faq() {
           triggerStyle={{ fontWeight: "bold" }}
         >
           <p>
-            We are not a monthly or quarterly subscription—that’s not very
-            festive! Sign up for *only* the holiday and seasonal boxes you want
-            to receive (minimum of 3 boxes per year).
+            We offer boxes for 4 seasons and 10 holidays. <br></br>
+
+                SEASONS: Spring, Summer, Fall, Winter <br></br>
+
+                HOLIDAYS: Valentine’s Day, St. Patrick’s Day, Easter Monday, Saint Jean Baptiste Day, Canada, Thanksgiving, Halloween, Christmas, New Year’s Eve <br></br>
           </p>
         </Collapsible>
         <Collapsible
-          trigger=<ListTitle title="What all comes in the box? Why do I need this service?" />
+          trigger=<ListTitle title="How does it work? Do I get to choose what comes in my boxes?" />
           triggerStyle={{ fontWeight: "bold" }}
         >
           <p>
-            You will be able to choose the theme/collection *and* the decor
-            items that you want to receive for the holidays/seasons you sign up
-            to receive—you will only be surprised if you want to!
+          To start, you will take a simple 4-question Style Quiz to curate your decor style. 
+          Then, we will select the perfect products for you!
           </p>
         </Collapsible>
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={1}>
         <Collapsible
-          trigger=<ListTitle title="What is Unbox Holidays?" />
+          trigger=<ListTitle title="How does payment work?" />
           triggerStyle={{ fontWeight: "bold" }}
         >
           <p>
-            We are not a monthly or quarterly subscription—that’s not very
-            festive! Sign up for *only* the holiday and seasonal boxes you want
-            to receive (minimum of 3 boxes per year).
+          Our convenient, flexible “Pay As You Go” billing option means you will be billed at the time that you choose/reserve your 
+          box for each holiday/season on your plan.  Your Unbox Holidays box subscriptions automatically renew each year. 
+          You can add or skip/cancel a box at any time in My Account.
+          </p>
+        </Collapsible>
+        <Collapsible
+          trigger=<ListTitle title="How much is shipping?" />
+          triggerStyle={{ fontWeight: "bold" }}
+        >
+          <p>
+          Shipping is a flat rate of $12 for box.<br></br>
+
+            We are a small business and while we wish we could cover the cost of shipping, it is simply not possible for us 
+            to do so and remain in business. Thank you for your understanding!
+          </p>
+        </Collapsible>
+        <Collapsible
+          trigger=<ListTitle title="When will my box ship?" />
+          triggerStyle={{ fontWeight: "bold" }}
+        >
+          <p>
+          Please reference the CALENDAR Page for all of these important dates!
           </p>
         </Collapsible>
       </CustomTabPanel>
