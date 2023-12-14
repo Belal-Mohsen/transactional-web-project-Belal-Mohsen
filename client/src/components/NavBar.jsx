@@ -23,7 +23,7 @@ const NavBar = () => {
           <Link to="/cart">
             <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7"/>
           </Link>
-          <Link to="/account">
+          <Link to="/myaccount">
             <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />
           </Link>
         </div>

@@ -18,7 +18,7 @@ const ContactUsPage = () => {
                 FILL OUT THE FORM BELOW IF YOU HAVE A QUESTION OR COMMENT FOR US
             </p>
         </div>
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center m-6">
           <ContactUs />
         </div>
   
