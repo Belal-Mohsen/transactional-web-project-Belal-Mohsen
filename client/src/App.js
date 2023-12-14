@@ -8,6 +8,7 @@ import FaqPage from './pages/FaqPage';
 import QuestionnairePage from './pages/QuestionnairePage';
 import CartPage from './pages/CartPage';
 import MyAccount from './pages/MyAccountPage';
+//import SubscribePage from './pages/SubscribePage';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Route path="/contactus" element={<ContactUsPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/faq" element={<FaqPage />} />
-      <Route path="/subscribe" element={<QuestionnairePage />} />
+      <Route path="/subscribe" element={<QuestionnairePage/>} />
       <Route path="/cart" element={<CartPage/>}/>
       <Route path="/myaccount" element={<MyAccount/>}/>
     </Routes>

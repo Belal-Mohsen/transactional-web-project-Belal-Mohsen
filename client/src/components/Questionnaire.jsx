@@ -13,58 +13,105 @@ const Questionnaire = () => {
             Which image best captures your decorating style?
           </span>
           <div className="flex justify-between mt-4">
-            <img
-              className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
-              src="./images/Subscribe_img1.png"
-              alt="Image 1"
-            />
-            <img
-              className="w-[168px] h-[198px] md:w-[168px] md:h-[198px] lg:w-[168px] lg:h-[150px]"
-              src="./images/Subscribe_img2.png"
-              alt="Image 2"
-            />
-            <img
-              className="w-[146px] h-[200px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
-              src="./images/Subscribe_img3.png"
-              alt="Image 3"
-            />
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 1
+                console.log("Clicked Image 1");
+              }}
+            >
+              <img
+                className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
+                src="./images/Subscribe_img1.png"
+                alt="Image 1"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 2
+                console.log("Clicked Image 2");
+              }}
+            >
+              <img
+                className="w-[168px] h-[198px] md:w-[168px] md:h-[198px] lg:w-[168px] lg:h-[150px]"
+                src="./images/Subscribe_img2.png"
+                alt="Image 2"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 3
+                console.log("Clicked Image 3");
+              }}
+            >
+              <img
+                className="w-[146px] h-[200px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
+                src="./images/Subscribe_img3.png"
+                alt="Image 3"
+              />
+            </button>
           </div>
         </div>
       </div>
 
       {/* Second block - Top right */}
-
       <div className="w-full md:w-1/2 text-center mb-4 md:mb-0">
         <div style={{ marginRight: "0.5vw", marginLeft: "4.5vw", marginTop: "0.5vw", marginBottom: "4.5vw" }}>
-          <span className="text-stone-800 text-xl font-bold font-['Inter'] leading-tight block ">
+          <span className="text-stone-800 text-xl font-bold font-['Inter'] leading-tight block">
             Question 2/4
           </span>
           <span className="text-stone-800 text-xl font-medium font-['Inter'] leading-tight block">
             Which area of the home are you decorating?
           </span>
           <div className="flex justify-between mt-4">
-            <img
-              className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
-              src="./images/Subscribe_img4.png"
-              alt="Image 4"
-            />
-            <img
-              className="w-[168px] h-[198px] md:w-[168px] md:h-[198px] lg:w-[168px] lg:h-[150px]"
-              src="./images/Subscribe_img5.png"
-              alt="Image 5"
-            />
-            <img
-              className="w-[146px] h-[200px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
-              src="./images/Subscribe_img6.png"
-              alt="Image 6"
-            />
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 4
+                console.log("Clicked Image 4");
+              }}
+            >
+              <img
+                className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
+                src="./images/Subscribe_img4.png"
+                alt="Image 4"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 5
+                console.log("Clicked Image 5");
+              }}
+            >
+              <img
+                className="w-[168px] h-[198px] md:w-[168px] md:h-[198px] lg:w-[168px] lg:h-[150px]"
+                src="./images/Subscribe_img5.png"
+                alt="Image 5"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 6
+                console.log("Clicked Image 6");
+              }}
+            >
+              <img
+                className="w-[146px] h-[200px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
+                src="./images/Subscribe_img6.png"
+                alt="Image 6"
+              />
+            </button>
           </div>
         </div>
       </div>
 
       {/* Third block - Below first block */}
       <div className="w-full md:w-1/2 text-center mb-4 md:mb-0">
-        <div style={{ marginRight: "0.7vw", marginLeft: "0.5vw", marginTop: "-0.25vw", marginBottom: "2.5vw"  }}>
+        <div style={{ marginRight: "0.7vw", marginLeft: "0.5vw", marginTop: "-0.25vw", marginBottom: "2.5vw" }}>
           <span className="text-stone-800 text-xl font-bold font-['Inter'] leading-tight block">
             Question 3/4
           </span>
@@ -72,27 +119,58 @@ const Questionnaire = () => {
             What is your favorite holiday?
           </span>
           <div className="flex justify-between mt-4">
-            <img
-              className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[130px]"
-              src="./images/Subscribe_img7.png"
-              alt="Image 7"
-            />
-            <img
-              className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[130px]"
-              src="./images/Subscribe_img8.png"
-              alt="Image 8"
-            />
-            <img
-              className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[120px]"
-              src="./images/Subscribe_img9.png"
-              alt="Image 9"
-            />
-            <img
-              className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[120px]"
-              src="./images/Subscribe_img10.png"
-              alt="Image 10"
-            />
-            
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 7
+                console.log("Clicked Image 7");
+              }}
+            >
+              <img
+                className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[130px]"
+                src="./images/Subscribe_img7.png"
+                alt="Image 7"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 8
+                console.log("Clicked Image 8");
+              }}
+            >
+              <img
+                className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[130px]"
+                src="./images/Subscribe_img8.png"
+                alt="Image 8"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 9
+                console.log("Clicked Image 9");
+              }}
+            >
+              <img
+                className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[120px]"
+                src="./images/Subscribe_img9.png"
+                alt="Image 9"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 10
+                console.log("Clicked Image 10");
+              }}
+            >
+              <img
+                className="w-[100px] h-[150px] md:w-[100px] md:h-[50px] lg:w-[110px] lg:h-[120px]"
+                src="./images/Subscribe_img10.png"
+                alt="Image 10"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -107,35 +185,63 @@ const Questionnaire = () => {
             What is your favorite color?
           </span>
           <div className="flex justify-between mt-4">
-            <img
-              className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
-              src="./images/Subscribe_img13.png"
-              alt="Image 7"
-            />
-            <img
-              className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
-              src="./images/Subscribe_img14.png"
-              alt="Image 8"
-            />
-            <img
-              className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
-              src="./images/Subscribe_img15.png"
-              alt="Image 9"
-            />
-            <img
-              className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
-              src="./images/Subscribe_img16.png"
-              alt="Image 10"
-            />
            
-            
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 13
+                console.log("Clicked Image 13");
+              }}
+            >
+              <img
+                className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
+                src="./images/Subscribe_img13.png"
+                alt="Image 13"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 14
+                console.log("Clicked Image 14");
+              }}
+            >
+              <img
+                className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
+                src="./images/Subscribe_img14.png"
+                alt="Image 14"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 15
+                console.log("Clicked Image 15");
+              }}
+            >
+              <img
+                className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
+                src="./images/Subscribe_img15.png"
+                alt="Image 15"
+              />
+            </button>
+            <button
+              className="focus:outline-none"
+              onClick={() => {
+                // Handle click for Image 16
+                console.log("Clicked Image 16");
+              }}
+            >
+              <img
+                className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
+                src="./images/Subscribe_img16.png"
+                alt="Image 16"
+              />
+            </button>
           </div>
         </div>
-        
       </div>
-      
     </div>
-    
   );
 };
 
