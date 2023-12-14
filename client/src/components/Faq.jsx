@@ -1,103 +1,164 @@
 import React from "react";
 
-export const Faq = () => {
-  // Inline styles as an object
-  const styles = {
-    container: {
-      position: 'absolute',
-      width: '70%',
-      maxWidth: '800px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      top: '25vh',
-    },
-    rectangle: {
-      position: 'absolute',
-      width: '100%',
-    },
-    rectangle14: {
-      height: '9vw',
-      top: '2vw',
-      background: '#F7EADE',
-      transform: 'scaleX(-1)',
-    },
-    rectangle15: {
-      height: '20vw',
-      top: '10vw',
-      background: '#F7F6F2',
-    },
-    text: {
-      position: 'absolute',
-      width: '90%',
-      maxWidth: '1168px',
-      left: '5%',
-      top: '3vw',
-      fontFamily: 'Inter',
-      fontWeight: 300,
-      fontSize: '1.8vw',
-      lineHeight: '5vw',
-      textAlign: 'center',
-      letterSpacing: '0.05em',
-      color: '#342F19',
-    },
-    question: {
-      position: 'absolute',
-      width: '90%',
-      maxWidth: '1146px',
-      left: '5%',
-      fontFamily: 'Inter',
-      fontWeight: 600,
-      fontSize: '1.2vw',
-      lineHeight: '5vw',
-      letterSpacing: '0.05em',
-      color: '#342F19',
-    },
-    line: {
-      position: 'absolute',
-      width: '90%',
-      maxWidth: '1126px',
-      left: '5%',
-      height: '0.1vw',
-      border: '0.1vw solid #C0876A',
-      transform: 'rotate(0.01deg)',
-    },
-    line1: {
-      top: '15vw',
-    },
-    line2: {
-      top: '21vw',
-    },
-    line3: {
-      top: '28vw',
-    },
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+
+import Collapsible from "react-collapsible";
+
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+const stylesGeneral = {
+  line: {
+    left: "5%",
+    marginTop: "5px",
+    marginBottom: "5px",
+    height: "0.1vw",
+    border: "0.1vw solid #C0876A",
+    transform: "rotate(0.01deg)",
+  },
+  line1: {
+    top: "15vw",
+  },
+  line2: {
+    top: "21vw",
+  },
+  line3: {
+    top: "28vw",
+  },
+};
+
+class ListTitle extends React.Component {
+  render() {
+    const { title } = this.props;
+    return (
+      <div>
+        <h2>{title}</h2>
+        <div style={{ ...stylesGeneral.line, ...stylesGeneral.line1 }} />
+      </div>
+    );
+  }
+}
+
+export default function Faq() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-    <div style={styles.container}>
-      <div style={{ ...styles.rectangle, ...styles.rectangle14 }} />
-      <p style={styles.text}>
-        How it works&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;Billing &amp; Shipping
-      </p>
-      <div style={{ ...styles.rectangle, ...styles.rectangle15 }} />
-      <p style={{ ...styles.question, top: '158px' }}>
-        What is Unbox Holidays?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#c0876a] text-[30px]">+</span>
-      </p>
-      <p style={{ ...styles.question, top: '258px' }}>
-        How many holidays do you offer? How much is each box? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#c0876a] text-[30px]">+</span>
-      </p>
-      <p style={{ ...styles.question, top: '350px' }}>
-        How does it work? Do I get to choose what comes in my boxes? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#c0876a] text-[30px]">+</span>
-      </p>
-      <div style={{ ...styles.line, ...styles.line1 }} />
-      <div style={{ ...styles.line, ...styles.line2 }} />
-      <div style={{ ...styles.line, ...styles.line3 }} />
-    </div>
-  );
-};
+    <Box sx={{ width: "80%" }}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          backgroundColor: "#F7EADE",
+        }}
+      >
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+          centered="true"
+        >
+          <Tab label="How it Works" {...a11yProps(0)} />
+          <Tab label="Billing & Shipping" {...a11yProps(1)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel
+        value={value}
+        index={0}
+        style={{ backgroundColor: "#F7F6F2" }}
+      >
+        <Collapsible
+          trigger=<ListTitle title="What is Unbox Holidays?" />
+          triggerStyle={{ fontWeight: "bold" }}
+        >
+          <p>
+            Welcome to ReadyFestive! We curate and deliver decorations for the
+            holidays and seasons you love—whether they’re for your home,
+            vacation home, or business!
+          </p>
+          <p>
+            We source from makers large and small, with the goal of finding the
+            most on-trend, quality decorations and festive items— that you would
+            otherwise have to purchase from several different stores— and bring
+            them all to one convenient location: your ReadyFestive box! It is
+            our mission to surprise, inspire and help you prepare for the
+            holiday—however that looks for you—so that you can stress less and
+            festive more!
+          </p>
+        </Collapsible>
+        <Collapsible
+          trigger=<ListTitle title="How many holidays/seasons do you offer? How much is each box?" />
+          triggerStyle={{ fontWeight: "bold" }}
+        >
+          <p>
+            We are not a monthly or quarterly subscription—that’s not very
+            festive! Sign up for *only* the holiday and seasonal boxes you want
+            to receive (minimum of 3 boxes per year).
+          </p>
+        </Collapsible>
+        <Collapsible
+          trigger=<ListTitle title="What all comes in the box? Why do I need this service?" />
+          triggerStyle={{ fontWeight: "bold" }}
+        >
+          <p>
+            You will be able to choose the theme/collection *and* the decor
+            items that you want to receive for the holidays/seasons you sign up
+            to receive—you will only be surprised if you want to!
+          </p>
+        </Collapsible>
+      </CustomTabPanel>
 
-export default Faq;
+      <CustomTabPanel value={value} index={1}>
+        <Collapsible
+          trigger=<ListTitle title="What is Unbox Holidays?" />
+          triggerStyle={{ fontWeight: "bold" }}
+        >
+          <p>
+            We are not a monthly or quarterly subscription—that’s not very
+            festive! Sign up for *only* the holiday and seasonal boxes you want
+            to receive (minimum of 3 boxes per year).
+          </p>
+        </Collapsible>
+      </CustomTabPanel>
+    </Box>
+  );
+}
+
+//export Faq;
