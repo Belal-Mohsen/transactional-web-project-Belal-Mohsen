@@ -49,8 +49,12 @@ const CartPage = () => {
       <TopBanner />
       <NavBar />
       <Shadow />
-      <div className="bg-white flex flex-col justify-center items-center w-full flex-grow">
-        <h1 className='font-semibold'>Shopping cart</h1>
+      <div className="bg-white flex flex-col justify-center items-center w-full flex-grow mt-6">
+        <h1 className='font-semibold text-xl mb-4'>Shopping cart</h1>
+        <div className='flex w-full justify-end px-32 mb-4'>
+          <p>You have {3} item(s) in your cart</p>
+        </div>
+
         <div className='w-full'>
           {cartItems.map((item, index) => (
             <CartItem key={index} item={item}
@@ -75,11 +79,13 @@ const CartPage = () => {
             </button>
           </div>
 
-          <div className='flex flex-col border border-gray-400/25 rounded-md'>
-            <p className='mx-3 my-8'>Cart Total</p>
-            <div className='flex justify-between mx-4'> <p className='mr-72'>Subtotal: </p> <p className='mr-6'>${ }</p></div>
-            <div className='flex justify-between mx-4'> <p className='mr-72'>Shipping: </p> <p className='mr-6'>Free</p></div>
-            <div className='flex justify-between mx-4'> <p className='mr-72'>Total: </p> <p className='mr-6'>${ }</p></div>
+          <div className='flex flex-col border border-gray-400/25 rounded-md mb-4'>
+            <p className='mx-3 my-8 text-lg'>Cart Total</p>
+            <div className='flex justify-between m-4'> <p className='mr-72'>Subtotal: </p> <p className='mr-6'>${ }</p></div>
+            <div className='mx-4 border-b border-gray-500'></div>
+            <div className='flex justify-between m-4'> <p className='mr-72'>Shipping: </p> <p className='mr-6'>Free</p></div>
+            <div className='mx-4 border-b border-gray-500'></div>
+            <div className='flex justify-between m-4'> <p className='mr-72'>Total: </p> <p className='mr-6'>${ }</p></div>
 
             <div className='flex justify-center justify-items-center mb-6'>
               <button
@@ -88,10 +94,7 @@ const CartPage = () => {
                 CheckOut
               </button>
             </div>
-
           </div>
-
-
         </div>
       </div>
       <Newsletter />
