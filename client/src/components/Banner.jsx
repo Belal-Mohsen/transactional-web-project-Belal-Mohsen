@@ -3,15 +3,15 @@ import React from "react";
 const Banner = () => {
   return (
     <div className="bg-[#f7eade]">
-      <div className=" max-w-6xl mx-auto ml-0 py-[57px]">
-        <div className="text-center space-y-4">
+      <div className="relative z-10 max-w-6xl mx-auto py-[57px] ">
+        <div className="text-center space-y-4 ">
           <p className="font-bold [font-family:'Inria_Serif',Helvetica] text-[#342f19] text-2xl md:text-3xl">
             Unbox Joy, Unbox Fun, Unbox Holidays!
           </p>
           <p className="font-normal [font-family:'Inria_Serif',Helvetica] text-[#342f19] text-base md:text-l">
             Celebrate the Seasons with Surprise!
           </p>
-          <button className="border-2 [font-family:'Inria_Serif',Helvetica] border-[#c0876a] text-[#c0876a] font-bold py-2 px-4">
+          <button className="border-2 rounded-[5px] [font-family:'Inria_Serif',Helvetica] border-[#c0876a] text-[#c0876a] font-bold py-2 px-4">
             Discover Now
           </button>
         </div>

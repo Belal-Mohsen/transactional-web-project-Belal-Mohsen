@@ -17,7 +17,7 @@ const OurStory = () => {
         </h2>
         <p className="mb-4 [font-family:'Inter-Light',Helvetica] font-normal text-[#342f19] text-[16px] tracking-[0] leading-[normal]">
           <span className="font-light">Founded by Chelsea, </span>
-          <span className="[font-family:'Inter-SemiBold',Helvetica] font-semibold">
+          <span className="[font-family:'Inter-SemiBold',Helvetica] font-semibold italic">
             Unbox Holidays
           </span>
           <span className="font-light">
@@ -31,7 +31,7 @@ const OurStory = () => {
             <br />
             At{" "}
           </span>
-          <span className="[font-family:'Inter-SemiBold',Helvetica] font-semibold">
+          <span className="[font-family:'Inter-SemiBold',Helvetica] font-semibold italic">
             Unbox Holidays
           </span>
           <span className="font-light">

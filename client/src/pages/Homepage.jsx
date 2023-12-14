@@ -8,6 +8,7 @@ import Banner from "../components/Banner";
 import NavBar from "../components/NavBar";
 import OurStory from "../components/OurStory";
 import ImageCarousel from "../components/ImageCarousel";
+import WhatsHot from "../components/WhatsHot";
 
 const Homepage = () => {
   return (
@@ -15,15 +16,14 @@ const Homepage = () => {
       <TopBanner />
       <NavBar />
       <Banner />
-
-      <div className="flex flex-1 items-center justify-center">
+      <div className="my-6 flex flex-1 items-center justify-center">
         <div className="w-full max-w-5xl mx-auto">
+        <WhatsHot />
           <ImageCarousel />
-          <OurStory />
           <HowItWorks />
+          <OurStory />
         </div>
       </div>
-
       <Newsletter />
       <Footer />
     </div>
