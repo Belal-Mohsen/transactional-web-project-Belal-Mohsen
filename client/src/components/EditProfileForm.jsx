@@ -52,7 +52,7 @@ const EditProfileForm = () => {
                         placeholder="Enter your first name"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5] rounded-md"
                         required
                     />
                 </label>
@@ -65,7 +65,7 @@ const EditProfileForm = () => {
                         placeholder="Enter your last name"
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5] rounded-md"
                         required
                     />
                 </label>
@@ -80,7 +80,7 @@ const EditProfileForm = () => {
                         placeholder="Enter your email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5] rounded-md"
                         required
                     />
                 </label>
@@ -93,7 +93,7 @@ const EditProfileForm = () => {
                         placeholder="Enter your address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5] rounded-md"
                         required
                     />
                 </label>
@@ -107,7 +107,7 @@ const EditProfileForm = () => {
                         placeholder="Current Password"
                         value={formData.currentPassword}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5] rounded-md"
                         required
                     />
                 </div>
@@ -118,7 +118,7 @@ const EditProfileForm = () => {
                         placeholder="New Password"
                         value={formData.newPassword}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 rounded-md bg-[#f5f5f5]"
                         required
                     />
                 </div>
@@ -129,7 +129,7 @@ const EditProfileForm = () => {
                         placeholder="Confirm New Password"
                         value={formData.confirmNewPassword}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5]rounded-md"
                         required
                     />
                 </div>

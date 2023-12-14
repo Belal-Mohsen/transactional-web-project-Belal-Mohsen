@@ -13,7 +13,7 @@ const MyAccountPage = ({ username = "test" }) => {
       <NavBar />
       <Shadow />
 
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-grow">
 
         <div className="flex justify-end p-4">
           Welcome Back, <span className='text-red-600 ml-1'>{username}!</span>
