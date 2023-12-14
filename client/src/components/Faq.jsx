@@ -72,7 +72,7 @@ class ListTitle extends React.Component {
     const { title } = this.props;
     return (
       <div>
-        <h2>{title}</h2>
+        <h2 style={{marginTop:"1vw"}}>{title}</h2>
         <div style={{ ...stylesGeneral.line, ...stylesGeneral.line1 }} />
       </div>
     );
@@ -151,7 +151,8 @@ export default function Faq() {
         </Collapsible>
       </CustomTabPanel>
 
-      <CustomTabPanel value={value} index={1}>
+      <CustomTabPanel value={value} index={1}
+      style={{ backgroundColor: "#F7F6F2" }}>
         <Collapsible
           trigger=<ListTitle title="How does payment work?" />
           triggerStyle={{ fontWeight: "bold" }}
