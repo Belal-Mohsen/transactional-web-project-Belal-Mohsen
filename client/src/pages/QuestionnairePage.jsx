@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Questionnaire from "../components/Questionnaire";
 import Shadow from "../components/Shadow";
-import ChatBox from "../components/ChatBox";
+import ChatBot from "../components/ChatBot";
 
 const QuestionnairePage = () => {
   return (
@@ -20,7 +20,7 @@ const QuestionnairePage = () => {
         <Questionnaire />
       </div>
 
-      <ChatBox className="!fixed !left-[1700px] !top-[516px]" />
+      <ChatBot />
 
       <button className="p-2 bg-[#c0876a] rounded text-black font-bold text-[26px] mt-4 mx-auto mb-8">
       

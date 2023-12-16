@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import SignUp from "../components/SignUp";
 import Shadow from "../components/Shadow";
-import ChatBox from "../components/ChatBox";
+import ChatBot from "../components/ChatBot";
 import LogIn from "../components/LogIn";
 
 const SignUpPage = () => {
@@ -18,8 +18,7 @@ const SignUpPage = () => {
       <div className="flex flex-1 items-center justify-center">
         <LogIn />
       </div>
-
-      <ChatBox className="!fixed !left-[1346px] !top-[816px]" />
+      <ChatBot />
       
       <Newsletter />
       <Footer />

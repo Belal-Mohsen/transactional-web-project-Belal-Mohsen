@@ -5,6 +5,7 @@ import Shadow from "../components/Shadow";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import CartItem from "../components/CartItem";
+import ChatBot from '../components/ChatBot';
 
 const CartPage = () => {
 
@@ -109,6 +110,7 @@ const CartPage = () => {
           </div>
         )}
       </div>
+      <ChatBot />
       <Newsletter />
       <Footer />
     </div>

@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Shadow from "../components/Shadow";
-import ChatBox from "../components/ChatBox";
+import ChatBot from "../components/ChatBot";
 import Subscribe from "../components/Subscribe";
 
 const SubscribePage = () => {
@@ -21,8 +21,7 @@ const SubscribePage = () => {
       <div className="flex mt-4 items-center justify-center">
         <Subscribe />
       </div>
-
-      <ChatBox className="fixed left-0 top-[10%] md:left-[10%] md:top-[30%]" />
+      <ChatBot />
 
       <button className="w-full md:w-auto px-6 py-3 bg-[#c0876a] rounded text-black font-bold text-[18px] md:text-[32px] mt-4 mx-auto md:mb-6">
         SUBSCRIBE

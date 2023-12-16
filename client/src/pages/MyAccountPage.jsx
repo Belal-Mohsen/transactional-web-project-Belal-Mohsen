@@ -5,6 +5,7 @@ import Shadow from "../components/Shadow";
 import Footer from "../components/Footer";
 import EditProfileForm from '../components/EditProfileForm';
 import Newsletter from '../components/Newsletter';
+import ChatBot from '../components/ChatBot';
 
 const MyAccountPage = ({ username = "test" }) => {
   return (
@@ -36,7 +37,7 @@ const MyAccountPage = ({ username = "test" }) => {
         </div>
 
       </div>
-
+      <ChatBot />
       <Newsletter />
       <Footer />
     </div>

@@ -9,6 +9,7 @@ import NavBar from "../components/NavBar";
 import OurStory from "../components/OurStory";
 import ImageCarousel from "../components/ImageCarousel";
 import WhatsHot from "../components/WhatsHot";
+import ChatBot from "../components/ChatBot";
 
 const Homepage = () => {
   return (
@@ -18,12 +19,13 @@ const Homepage = () => {
       <Banner />
       <div className="my-6 flex flex-1 items-center justify-center">
         <div className="w-full max-w-5xl mx-auto">
-        <WhatsHot />
+          <WhatsHot />
           <ImageCarousel />
           <HowItWorks />
           <OurStory />
         </div>
       </div>
+      <ChatBot />
       <Newsletter />
       <Footer />
     </div>
