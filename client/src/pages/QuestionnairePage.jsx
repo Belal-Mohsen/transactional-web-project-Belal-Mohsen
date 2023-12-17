@@ -22,11 +22,6 @@ const QuestionnairePage = () => {
 
       <ChatBot />
 
-      <button className="p-2 bg-[#c0876a] rounded text-black font-bold text-[26px] mt-4 mx-auto mb-8">
-      
-        GENERATE IMAGES
-      </button>
-
       <Newsletter />
       <Footer />
     </div>

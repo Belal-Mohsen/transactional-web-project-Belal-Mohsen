@@ -8,6 +8,30 @@ const Questionnaire = () => {
     4: null,
   });
 
+  const imageMapToApi = 
+  {
+    "1" : "Farm", 
+    "2" : "Coastal", 
+    "3" : "Minimalist", 
+    "4" : "Dining", 
+    "5" : "Living", 
+    "6" : "Kitchen", 
+    "7" : "New Year's Eve", 
+    "8" : "Valentine's Day", 
+    "9" : "St. Patrick's Day", 
+    "10" : "Easter", 
+    "11" : "Thanksgiving", 
+    "12" : "Halloween", 
+    "13" : "Christmas", 
+    "14" : "Blue", 
+    "15" : "Green", 
+    "16" : "Orange", 
+    "17" : "Gray", 
+    "18" : "Pink", 
+    "19" : "Purple", 
+    "20" : "Red" 
+  }
+
   const handleImageClick = (questionNumber, imageNumber) => {
     console.log(`Clicked Image ${imageNumber} for Question ${questionNumber}`);
 
@@ -24,6 +48,15 @@ const Questionnaire = () => {
           ? "1px solid black"
           : "none",
     };
+  };
+
+  const generateImagesFromApi = () => {
+    console.log("Generate images from API");
+    console.log(selectedImages);
+    console.log("First answer: " + imageMapToApi[selectedImages["1"]]);
+    console.log("Second answer: " + imageMapToApi[selectedImages["2"]]);
+    console.log("Third answer: " + imageMapToApi[selectedImages["3"]]);
+    console.log("Fourth answer: " + imageMapToApi[selectedImages["4"]]);
   };
 
   return (
@@ -117,7 +150,7 @@ const Questionnaire = () => {
             What is your favorite holiday?
           </span>
           <div className="flex justify-between mt-4">
-            {[17, 7, 8, 9, 10, 11, 12].map((imageNumber) => (
+            {[7, 8, 9, 10, 11, 12, 13].map((imageNumber) => (
               <button
                 key={imageNumber}
                 className="focus:outline-none"
@@ -155,7 +188,7 @@ const Questionnaire = () => {
             What is your favorite color?
           </span>
           <div className="flex justify-between mt-4">
-            {[13, 14, 15, 16, 22, 23, 24].map((imageNumber) => (
+            {[14, 15, 16, 17, 18, 19, 20].map((imageNumber) => (
               <button
                 key={imageNumber}
                 className="focus:outline-none"
@@ -172,6 +205,12 @@ const Questionnaire = () => {
           </div>
         </div>
       </div>
+
+      <button className="p-2 bg-[#c0876a] rounded text-black font-bold text-[26px] mt-4 mx-auto mb-8"
+      onClick={() => generateImagesFromApi()}>
+      
+        GENERATE IMAGES
+      </button>
     </div>
   );
 };
