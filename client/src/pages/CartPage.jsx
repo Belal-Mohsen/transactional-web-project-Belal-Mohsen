@@ -58,7 +58,7 @@ const CartPage = () => {
         {totalItems === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
-          <div className='flex w-full justify-end px-32 mb-4'>
+          <div className='flex w-full justify-center md:justify-end md:px-32 mb-4'>
             <p>You have {totalItems} item(s) in your cart</p>
           </div>
         )}
@@ -77,15 +77,15 @@ const CartPage = () => {
 
         {totalItems > 0 && (
 
-          <div className='flex w-full px-32 justify-between mt-4'>
+          <div className='flex flex-col md:flex-row w-full md:px-32 px-4 justify-between mt-4'>
 
-            <div className='flex items-start'>
+            <div className='flex flex-col md:flex-row items-start'>
               <input
                 className='border p-2 rounded-md border-black mr-4'
                 placeholder='Coupon Code'
               />
               <button
-                className="px-4 py-2 bg-[#c0876a] text-white rounded-md"
+                className="px-4 my-2 md:my-0 py-2 bg-[#c0876a] text-white rounded-md"
               >
                 Apply Coupon
               </button>
@@ -93,11 +93,11 @@ const CartPage = () => {
 
             <div className='flex flex-col border border-gray-400/25 rounded-md mb-4'>
               <p className='mx-3 my-8 text-lg'>Cart Total</p>
-              <div className='flex justify-between m-4'> <p className='mr-72'>Subtotal: </p> <p className='mr-6'>${totalPrice}</p></div>
+              <div className='flex justify-between m-4'> <p className='md:mr-72'>Subtotal: </p> <p className='mr-6'>${totalPrice}</p></div>
               <div className='mx-4 border-b border-gray-500'></div>
-              <div className='flex justify-between m-4'> <p className='mr-72'>Shipping: </p> <p className='mr-6'>Free</p></div>
+              <div className='flex justify-between m-4'> <p className='md:mr-72'>Shipping: </p> <p className='mr-6'>Free</p></div>
               <div className='mx-4 border-b border-gray-500'></div>
-              <div className='flex justify-between m-4'> <p className='mr-72'>Total: </p> <p className='mr-6'>${totalPrice}</p></div>
+              <div className='flex justify-between m-4'> <p className='md:mr-72'>Total: </p> <p className='mr-6'>${totalPrice}</p></div>
 
               <div className='flex justify-center justify-items-center mb-6'>
                 <button

@@ -7,9 +7,9 @@ const CartItem = ({ item, onIncrease, onDecrease, onDelete }) => {
   const { name, image, quantity, price } = item;
 
   return (
-    <div className="bg-white rounded-[20px] shadow-md p-4 mb-4 flex flex-col md:flex-row items-center justify-between mx-32">
+    <div className="bg-white rounded-[20px] shadow-md p-4 mb-4 flex  items-center justify-between md:mx-32">
 
-      <div className="flex items-center">
+      <div className="flex  items-center">
         <img src={image} alt={name} className="w-12 h-12 rounded-lg object-cover mr-8" />
         <div>
           <p className="text-md font-semibold">{name}</p>
