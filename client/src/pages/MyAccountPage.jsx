@@ -22,16 +22,16 @@ const MyAccountPage = ({ username = "test" }) => {
 
         <div className='flex flex-col md:flex-row md:ml-64 md:gap-10'>
           <div className="flex flex-col p-4">
-            <a href="/myaccount" className="underline mb-2 font-semibold">
+            <a href="/myaccount" className="underline mb-2 font-semibold text-[#342f19]">
               Manage Your Account
             </a>
-            <a href="/subscribe" className="mb-4 font-semibold">
+            <a href="/subscribe" className="mb-4 font-semibold text-[#342f19]">
               Manage Your Subscription
             </a>
           </div>
 
-          <div className="flex flex-col p-4">
-            <h2 className="text-2xl font-bold mb-4">Edit Your Profile</h2>
+          <div className="flex flex-col p-4 ">
+            <h2 className="text-2xl font-bold mb-4 text-center text-[#342f19]">Edit Your Profile</h2>
             <EditProfileForm />
           </div>
         </div>

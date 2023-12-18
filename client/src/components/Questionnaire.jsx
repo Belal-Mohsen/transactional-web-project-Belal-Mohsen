@@ -205,12 +205,17 @@ const Questionnaire = () => {
           </div>
         </div>
       </div>
-
-      <button className="p-2 bg-[#c0876a] rounded text-black font-bold text-[26px] mt-4 mx-auto mb-8"
-      onClick={() => generateImagesFromApi()}>
       
+      <div className="flex justify-center gap-32 mb-4 w-full">
+      <button className="p-2 bg-[#c0876a] rounded text-white text-[22px] w-20 mt-4 mb-8">
+      SAVE
+      </button>
+      
+      <button className="p-2 bg-[#c0876a] rounded text-white text-[22px] mt-4 mb-8"
+      onClick={() => generateImagesFromApi()}>     
         GENERATE IMAGES
       </button>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const QuestionnairePage = () => {
       <TopBanner />
       <NavBar />
       <Shadow />
-      <p className="mx-1 mt-6 mb-2 [font-family:'Inter-SemiBold',Helvetica] font-semibold text-[#342f19cc] text-[32px] text-center">
+      <p className="mx-1 mt-6 mb-2 [font-family:'Inter-SemiBold',Helvetica] font-semibold text-[#342f19] text-[32px] text-center">
         Questionnaire
       </p>
       <div className="flex mt-4 items-center justify-center">

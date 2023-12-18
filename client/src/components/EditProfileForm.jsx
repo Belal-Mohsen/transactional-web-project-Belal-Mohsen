@@ -42,7 +42,7 @@ const EditProfileForm = () => {
 
     return (
 
-        <div className="max-w-lg m-8 p-4 bg-white shadow-md rounded-md">
+        <div className="max-w-lg m-8 p-4 bg-white shadow-md rounded-md text-[#342f19]">
             <div className='flex flex-col md:flex-row md:gap-8'>
                 <label className="block mb-2">
                     First Name
@@ -129,7 +129,7 @@ const EditProfileForm = () => {
                         placeholder="Confirm New Password"
                         value={formData.confirmNewPassword}
                         onChange={handleChange}
-                        className="block w-full mt-1 p-2 bg-[#f5f5f5]rounded-md"
+                        className="block w-full mt-1 p-2 bg-[#f5f5f5] rounded-md"
                         required
                     />
                 </div>
