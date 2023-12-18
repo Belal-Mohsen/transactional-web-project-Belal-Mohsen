@@ -45,7 +45,7 @@ const NavBar = () => {
             : "md:hidden bg-gray-100"
         }
       >
-        <div className="flex justify-between px-2">
+        <div className="flex justify-between px-2 z-20">
           <Link to="/">
             <img
               className="h-12 object-cover"
@@ -55,7 +55,7 @@ const NavBar = () => {
           </Link>
           <button
             onClick={toggleMenu}
-            className="md:hidden text-gray-800 text-4xl"
+            className="md:hidden text-gray-800 text-4xl z-20"
           >
             {isMenuOpen ? <BsX /> : <BsList className="flex ml-" />}
           </button>
@@ -63,7 +63,7 @@ const NavBar = () => {
         <div>
           {isMenuOpen && (
             <div>
-              <ul className=" flex flex-col gap-2 p-4">
+              <ul className=" flex flex-col gap-2 p-4 z-20">
                 <Link to="/" className="hover:[color:#7d5844]">Home</Link>
                 <Link to="/subscribe" className="hover:[color:#7d5844]">Subscribe</Link>
                 <Link to="/faq" className="hover:[color:#7d5844]">FAQ</Link>

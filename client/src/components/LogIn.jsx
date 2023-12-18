@@ -11,7 +11,7 @@ const LogIn = () => {
         <form className="space-y-4">
           <input
             type="text"
-            placeholder="Username or Email"
+            placeholder="Email"
             className="w-full p-2 border rounded"
           />
           <input

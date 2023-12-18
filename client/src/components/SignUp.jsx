@@ -10,7 +10,12 @@ const SignUp = () => {
         <form className="space-y-4">
           <input
             type="text"
-            placeholder="Username"
+            placeholder="First Name"
+            className="w-full p-2 border rounded"
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
             className="w-full p-2 border rounded"
           />
           <input
