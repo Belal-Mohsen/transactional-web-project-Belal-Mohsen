@@ -1,9 +1,28 @@
 import React from 'react';
-import ChristmasBox from './ChristmasBox';
-import NewYearBox from './NewyearBox';
-import ValentineBox from './ValentineBox';
+import { PiShoppingCartDuotone } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const WhatsHot = () => {
+
+  const holidayBoxes = [
+    {
+      name: 'Christmas Box',
+      price: '$69',
+      discount: '$55',
+      image: './images/christmasBox.png'
+    },
+    {
+      name: 'New Year Box',
+      price: '$69',
+      image: './images/newyearBox.png'
+    },
+    {
+      name: 'Valentine Box',
+      price: '$69',
+      image: './images/valentineBox.png'
+    }
+  ]
+
   return (
     <div className="max-w-7xl mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
@@ -17,9 +36,40 @@ const WhatsHot = () => {
         </a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <ChristmasBox />
-        <NewYearBox />
-        <ValentineBox />
+        {holidayBoxes.map((holidayBox) => (
+          <div className="max-w-sm mx-auto overflow-hidden">
+            <img
+              src={holidayBox.image}
+              alt={holidayBox.name}
+              className="w-full border-2 border-[#C0876A] border-[6px] rounded-[5px] "
+            />
+            <div className="flex justify-between items-center p-4 bg-white">
+              <div>
+                <h2 className="text-l font-bold [font-family:'Inria_Serif',Helvetica]">
+                  {holidayBox.name}
+                </h2>
+                <p className="text-[16px] font-light text-gray-600">
+                  from {holidayBox.discount ? (
+                    <>
+                      {' '}
+                      <span className="text-red-600 line-through">
+                        {holidayBox.price}
+                      </span>{' '}
+                      <span className="text-green-600">
+                        {holidayBox.discount}
+                      </span>
+                    </>
+                  ) : (
+                    holidayBox.price
+                  )}
+                </p>
+              </div>
+              <Link to="/cart">
+                <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
