@@ -12,7 +12,7 @@ const WhatsHot = () => {
             WHAT'S HOT
           </h2>
         </div>
-        <a href="/get-started" className="text-base md:text-xs font-thin whitespace-nowrap">
+        <a href="/subscribe" className="text-base md:text-xs font-thin whitespace-nowrap">
           GET STARTED {'>'}
         </a>
       </div>

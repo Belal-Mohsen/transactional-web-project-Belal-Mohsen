@@ -87,7 +87,7 @@ const Questionnaire = () => {
                 <img
                   className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[155px] lg:h-[150px]"
                   src={`./images/Subscribe_img${imageNumber}.png`}
-                  alt={`Image ${imageNumber}`}
+                  alt={`${imageNumber}`}
                   style={getImageStyle(1, imageNumber)}
                 />
               </button>
@@ -125,7 +125,7 @@ const Questionnaire = () => {
                 <img
                   className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[146px] lg:h-[150px]"
                   src={`./images/Subscribe_img${imageNumber}.png`}
-                  alt={`Image ${imageNumber}`}
+                  alt={`${imageNumber}`}
                   style={getImageStyle(2, imageNumber)}
                 />
               </button>
@@ -159,7 +159,7 @@ const Questionnaire = () => {
                 <img
                   className="w-[154px] h-[203px] md:w-[168px] md:h-[198px] lg:w-[150px] lg:h-[130px]"
                   src={`./images/Subscribe_img${imageNumber}.png`}
-                  alt={`Image ${imageNumber}`}
+                  alt={`${imageNumber}`}
                   style={getImageStyle(3, imageNumber)}
                 />
               </button>
@@ -197,7 +197,7 @@ const Questionnaire = () => {
                 <img
                   className="w-[80px] h-[80px] md:w-[100px] md:h-[50px] lg:w-[60px] lg:h-[60px]"
                   src={`./images/Subscribe_img${imageNumber}.png`}
-                  alt={`Image ${imageNumber}`}
+                  alt={`${imageNumber}`}
                   style={getImageStyle(4, imageNumber)}
                 />
               </button>

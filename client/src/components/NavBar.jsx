@@ -7,17 +7,19 @@ const NavBar = () => {
   return (
     <div className="relative overflow-x-auto bg-white">
       <div className="flex justify-between items-center p-1 mr-5 ml-1">
+      <Link to="/">
         <img
           className="h-12 object-cover"
           alt="Logo color updated"
           src="https://c.animaapp.com/qqWqs49g/img/logo-color-updated-1@2x.png"
         />
-        <div className="z-10 hidden md:flex gap-16 [font-family:'Inria_Serif',Helvetica]">
-          <Link to="/" className="font-bold text-[#342f19] text-lg">Home</Link>
-          <Link to="/subscribe" className="font-bold text-[#342f19] text-lg">Subscribe</Link>
-          <Link to="/faq" className="font-bold text-[#342f19] text-lg">FAQ</Link>
-          <Link to="/calendar" className="font-bold text-[#342f19] text-lg">Calendar</Link>
-          <Link to="/contactus" className="font-bold text-[#342f19] text-lg">Contact Us</Link>
+      </Link>
+        <div className="z-10 hidden md:flex gap-16 [font-family:'Inria_Serif',Helvetica] font-bold [color:#342f19] text-lg ">
+          <Link to="/" className="hover:[color:#7d5844]">Home</Link>
+          <Link to="/subscribe" className="hover:[color:#7d5844]">Subscribe</Link>
+          <Link to="/faq" className="hover:[color:#7d5844]">FAQ</Link>
+          <Link to="/calendar" className="hover:[color:#7d5844]">Calendar</Link>
+          <Link to="/contactus" className="hover:[color:#7d5844]">Contact Us</Link>
         </div>
         <div className="z-10 flex gap-4">
           <Link to="/cart">

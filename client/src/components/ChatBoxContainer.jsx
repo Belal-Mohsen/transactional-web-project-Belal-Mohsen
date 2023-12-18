@@ -29,7 +29,7 @@ const ChatBoxContainer = () => {
   };
 
   return (
-    <div style={{ position: "relative", height: "500px", width: "600px" }}>
+    <div style={{ position: "relative", height: "500px", width: "400px"}}>
       <MainContainer>
         <ChatContainer>
           <MessageList>

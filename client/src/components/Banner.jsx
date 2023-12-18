@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -11,15 +12,18 @@ const Banner = () => {
           <p className="font-normal [font-family:'Inria_Serif',Helvetica] text-[#342f19] text-base md:text-l">
             Celebrate the Seasons with Surprise!
           </p>
-          <button className="border-2 rounded-[5px] [font-family:'Inria_Serif',Helvetica] border-[#c0876a] text-[#c0876a] font-bold py-2 px-4">
+          <Link
+            to="/subscribe"
+            className="border-2 rounded-[5px] [font-family:'Inria_Serif',Helvetica] border-[#c0876a] text-[#c0876a] font-bold py-2 px-4 inline-block"
+          >
             Discover Now
-          </button>
+          </Link>
         </div>
       </div>
       <img
-          className="absolute right-0 top-6 object-cover sm:hidden md:hidden lg:hidden xl:block"
-          alt="Banner"
-          src="https://c.animaapp.com/qqWqs49g/img/bannerimage.png"
+        className="absolute right-0 top-6 object-cover sm:hidden md:hidden lg:hidden xl:block"
+        alt="Banner"
+        src="https://c.animaapp.com/qqWqs49g/img/bannerimage.png"
       />
     </div>
   );
