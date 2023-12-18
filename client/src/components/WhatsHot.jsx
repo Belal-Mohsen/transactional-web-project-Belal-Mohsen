@@ -1,6 +1,5 @@
 import React from 'react';
 import { PiShoppingCartDuotone } from "react-icons/pi";
-import { Link } from "react-router-dom";
 
 const WhatsHot = () => {
 
@@ -21,7 +20,11 @@ const WhatsHot = () => {
       price: '$69',
       image: './images/valentineBox.png'
     }
-  ]
+  ];
+
+  const handleClick = (holidayBox) => {
+    console.log(holidayBox.name);
+  }
 
   return (
     <div className="max-w-7xl mx-auto p-4">
@@ -64,9 +67,9 @@ const WhatsHot = () => {
                   )}
                 </p>
               </div>
-              <Link to="/cart">
+              <button onClick={() => handleClick(holidayBox)}>
                 <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
-              </Link>
+              </button>
             </div>
           </div>
         ))}

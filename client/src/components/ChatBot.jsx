@@ -15,7 +15,7 @@ const ChatBot = () => {
       <button onClick={handleClick} className="fixed right-5 bottom-5 md:right-20 md:bottom-20">
         <FaRocketchat className="text-4xl md:text-5xl text-[#7d5844]" />
       </button>
-      <div style={{ display: active ? 'block' : 'none' }} className="fixed right-5 bottom-20 md:right-20 md:bottom-32">
+      <div style={{ display: active ? 'block' : 'none' }} className="fixed right-5 bottom-20 md:right-20 md:bottom-32 z-20">
         <ChatBoxContainer />
       </div>
     </>

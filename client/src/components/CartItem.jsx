@@ -19,8 +19,8 @@ const CartItem = ({ item, onIncrease, onDecrease, onDelete }) => {
       <div className="flex items-center">
         <span className="mx-2">{quantity}</span>
         <div className='flex flex-col items-center'>
-          <button onClick={onIncrease} disabled={quantity === 1}><IoMdArrowDropup className='text-2xl' /></button>
-          <button onClick={onDecrease}><IoMdArrowDropdown className='text-2xl' /></button>
+          <button onClick={onIncrease}><IoMdArrowDropup className='text-2xl' /></button>
+          <button onClick={onDecrease} disabled={quantity === 1}><IoMdArrowDropdown className='text-2xl' /></button>
         </div>
 
 
