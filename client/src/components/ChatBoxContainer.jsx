@@ -23,7 +23,7 @@ const ChatBoxContainer = () => {
       sender: "user",
       direction: "outgoing",
     };
-    const newMessages = [...messages, newMessage];
+    const newMessages = [...messages,newMessage];
     setMessages(newMessages);
     // [TODO! Process messages!]
   };
