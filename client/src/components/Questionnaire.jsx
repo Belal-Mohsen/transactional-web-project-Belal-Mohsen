@@ -8,60 +8,79 @@ const Questionnaire = () => {
     4: null,
   });
 
-  const imageMapToApi = 
-  {
-    "1" : "Farm", 
-    "2" : "Coastal", 
-    "3" : "Minimalist", 
-    "4" : "Dining", 
-    "5" : "Living", 
-    "6" : "Kitchen", 
-    "7" : "New Year's Eve", 
-    "8" : "Valentine's Day", 
-    "9" : "St. Patrick's Day", 
-    "10" : "Easter", 
-    "11" : "Thanksgiving", 
-    "12" : "Halloween", 
-    "13" : "Christmas", 
-    "14" : "Blue", 
-    "15" : "Green", 
-    "16" : "Orange", 
-    "17" : "Gray", 
-    "18" : "Pink", 
-    "19" : "Purple", 
-    "20" : "Red" 
-  }
+  const imageMapToApi = {
+    1: "Farm",
+    2: "Coastal",
+    3: "Minimalist",
+    4: "Dining",
+    5: "Living",
+    6: "Kitchen",
+    7: "New Year's Eve",
+    8: "Valentine's Day",
+    9: "St. Patrick's Day",
+    10: "Easter",
+    11: "Thanksgiving",
+    12: "Halloween",
+    13: "Christmas",
+    14: "Blue",
+    15: "Green",
+    16: "Orange",
+    17: "Gray",
+    18: "Pink",
+    19: "Purple",
+    20: "Red",
+  };
 
   const handleImageClick = (questionNumber, imageNumber) => {
-    console.log(`Clicked Image ${imageNumber} for Question ${questionNumber}`);
+    setSelectedImages((prevSelectedImages) => {
+      const selectedImagesArray = prevSelectedImages[questionNumber] || [];
+      const updatedSelectedImages = [...selectedImagesArray];
 
-    setSelectedImages((prevSelectedImages) => ({
-      ...prevSelectedImages,
-      [questionNumber]: imageNumber,
-    }));
+      // Toggle image selection
+      if (updatedSelectedImages.includes(imageNumber)) {
+        updatedSelectedImages.splice(
+          updatedSelectedImages.indexOf(imageNumber),
+          1
+        );
+      } else {
+        updatedSelectedImages.push(imageNumber);
+      }
+
+      return {
+        ...prevSelectedImages,
+        [questionNumber]: updatedSelectedImages,
+      };
+    });
   };
 
   const getImageStyle = (questionNumber, imageNumber) => {
     return {
-      border:
-        selectedImages[questionNumber] === imageNumber
-          ? "1px solid black"
-          : "none",
+      border: selectedImages[questionNumber]?.includes(imageNumber)
+        ? "1px solid black"
+        : "none",
     };
   };
 
   const generateImagesFromApi = () => {
     console.log("Generate images from API");
-    console.log(selectedImages);
-    console.log("First answer: " + imageMapToApi[selectedImages["1"]]);
-    console.log("Second answer: " + imageMapToApi[selectedImages["2"]]);
-    console.log("Third answer: " + imageMapToApi[selectedImages["3"]]);
-    console.log("Fourth answer: " + imageMapToApi[selectedImages["4"]]);
+    for (let questionNumber = 1; questionNumber <= 4; questionNumber++) {
+      const selectedImageNumbers = selectedImages[questionNumber];
+      if (selectedImageNumbers) {
+        const selectedImageLabels = selectedImageNumbers.map(
+          (imageNumber) => imageMapToApi[imageNumber]
+        );
+        console.log(
+          `Question ${questionNumber} answers: ${selectedImageLabels.join(
+            ", "
+          )}`
+        );
+      }
+    }
   };
 
   return (
-    <div className="flex flex-wrap w-full max-w-[1150px] mx-auto mt-4">
-      {/* First block - Top left */}
+  <div className="flex flex-wrap w-full max-w-[1150px] mx-auto mt-4">
+    {/* First block - Top left */}
       <div className="w-full md:w-1/2 text-center mb-4 md:mb-0">
         <div
           style={{
@@ -95,20 +114,11 @@ const Questionnaire = () => {
           </div>
         </div>
       </div>
-
-      {/* Add more space between blocks */}
+    {/* Add more space between blocks */}
       <div className="w-full md:w-1/12"></div>
-
-      {/* Second block - Top right */}
+    {/* Second block - Top right */}
       <div className="w-full md:w-5/12 text-center mb-4 md:mb-0">
-        <div
-        // style={{
-        //    marginRight: "0.5vw",
-        //    marginLeft: "4.5vw",
-        //    marginTop: "0.5vw",
-        //    marginBottom: "4.5vw",
-        //  }}
-        >
+        <div>
           <span className="text-stone-800 text-xl font-bold font-['Inter'] leading-tight block">
             Question 2/4
           </span>
@@ -133,7 +143,7 @@ const Questionnaire = () => {
           </div>
         </div>
       </div>
-      {/* Third block - Below first block */}
+    {/* Third block - Below first block */}
       <div className="w-full md:w-1/2 text-center mb-4 md:mb-0">
         <div
           style={{
@@ -167,11 +177,9 @@ const Questionnaire = () => {
           </div>
         </div>
       </div>
-
-      {/* Add more space between blocks */}
+    {/* Add more space between blocks */}
       <div className="w-full md:w-1/12"></div>
-
-      {/* Fourth block - Below second block */}
+    {/* Fourth block - Below second block */}
       <div className="w-full md:w-5/12 text-center mb-4 md:mb-0">
         <div
           style={{
@@ -205,16 +213,17 @@ const Questionnaire = () => {
           </div>
         </div>
       </div>
-      
       <div className="flex justify-center gap-32 mb-4 w-full">
-      <button className="p-2 bg-[#c0876a] rounded text-white text-[22px] w-20 mt-4 mb-8">
-      SAVE
-      </button>
-      
-      <button className="p-2 bg-[#c0876a] rounded text-white text-[22px] mt-4 mb-8"
-      onClick={() => generateImagesFromApi()}>     
-        GENERATE IMAGES
-      </button>
+        <button className="p-2 bg-[#c0876a] rounded text-white text-[22px] w-20 mt-4 mb-8">
+          SAVE
+        </button>
+
+        <button
+          className="p-2 bg-[#c0876a] rounded text-white text-[22px] mt-4 mb-8"
+          onClick={() => generateImagesFromApi()}
+        >
+          GENERATE IMAGES
+        </button>
       </div>
     </div>
   );
