@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 const Questionnaire = () => {
   const [selectedImages, setSelectedImages] = useState({
-    1: null,
-    2: null,
-    3: null,
-    4: null,
+    1: [],
+    2: [],
+    3: [],
+    4: [],
   });
 
   const imageMapToApi = {
@@ -33,17 +33,22 @@ const Questionnaire = () => {
 
   const handleImageClick = (questionNumber, imageNumber) => {
     setSelectedImages((prevSelectedImages) => {
+      // For Question 1 and Question 4, store the answer in an array
+      if (questionNumber === 1 || questionNumber === 4) {
+        return {
+          ...prevSelectedImages,
+          [questionNumber]: [imageNumber],
+        };
+      }
       const selectedImagesArray = prevSelectedImages[questionNumber] || [];
       const updatedSelectedImages = [...selectedImagesArray];
 
-      // Toggle image selection
-      if (updatedSelectedImages.includes(imageNumber)) {
-        updatedSelectedImages.splice(
-          updatedSelectedImages.indexOf(imageNumber),
-          1
-        );
-      } else {
+      // Toggle image selection for Question 2 and Question 3
+      const index = updatedSelectedImages.indexOf(imageNumber);
+      if (index === -1) {
         updatedSelectedImages.push(imageNumber);
+      } else {
+        updatedSelectedImages.splice(index, 1);
       }
 
       return {
@@ -51,29 +56,32 @@ const Questionnaire = () => {
         [questionNumber]: updatedSelectedImages,
       };
     });
-  };
+  }
 
   const getImageStyle = (questionNumber, imageNumber) => {
     return {
-      border: selectedImages[questionNumber]?.includes(imageNumber)
-        ? "1px solid black"
-        : "none",
+      border:
+        questionNumber === 1 || questionNumber === 4
+          ? selectedImages[questionNumber][0] === imageNumber
+            ? "1px solid black"
+            : "none"
+          : selectedImages[questionNumber]?.includes(imageNumber)
+          ? "1px solid black"
+          : "none",
     };
   };
-
+  
   const generateImagesFromApi = () => {
     console.log("Generate images from API");
     for (let questionNumber = 1; questionNumber <= 4; questionNumber++) {
       const selectedImageNumbers = selectedImages[questionNumber];
-      if (selectedImageNumbers) {
+      if (Array.isArray(selectedImageNumbers)) {
         const selectedImageLabels = selectedImageNumbers.map(
           (imageNumber) => imageMapToApi[imageNumber]
         );
-        console.log(
-          `Question ${questionNumber} answers: ${selectedImageLabels.join(
-            ", "
-          )}`
-        );
+        console.log(`Question ${questionNumber} answers: ${selectedImageLabels.join(", ")}`);
+      } else {
+        console.log(`Question ${questionNumber} answers: ${imageMapToApi[selectedImageNumbers]}`);
       }
     }
   };
@@ -230,3 +238,4 @@ const Questionnaire = () => {
 };
 
 export default Questionnaire;
+
