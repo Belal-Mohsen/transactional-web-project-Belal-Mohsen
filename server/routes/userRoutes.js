@@ -8,22 +8,59 @@ dotenv.config();
 
 const router = express.Router();
 
-router.route('/').get(async (req, res) => {
+// get a user's info
+router.route('/getUser').get(async (req, res) => {
     try {
-        res.status(200).json({ success: true, data: { "user": "user1" } });
+        const { email } = req.query;
+        const user = await User.findOne({ email });
+        if (user) {
+            res.status(200).json({ success: true, data: user });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found' });
+        }
     } catch (err) {
-        res.status(500).json({ success: false, message: 'Fetching posts failed, please try again' });
+        res.status(500).json({ success: false, message: 'Unable to retrieve user, please try again' });
     }
 });
 
 
+// update a user's info
+router.route('/updateUser/:email').put(async (req, res) => {
+    try {
+        const { fName, lName, password, address } = req.body;
+        const email = req.params.email;
+        const updatedUser = await User.findOneAndUpdate(
+            { email },
+            {
+                fName,
+                lName,
+                password,
+                address
+            },
+            { new: true }
+        );
 
+        if (updatedUser) {
+            res.status(200).json({ success: true, data: updatedUser });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ success: false, message: 'Unable to update the user, please try again' });
+    }
+});
+
+// Create a new user
 router.route('/').post(async (req, res) => {
     try {
-        const { userName, fName, lName, password, email, address } = req.body;
+        const { fName, lName, password, email, address } = req.body;
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ success: false, message: 'Email already exists' });
+        }
 
         const newUser = await User.create({
-            userName,
             fName,
             lName,
             password,

@@ -18,7 +18,7 @@ const SignUpPage = () => {
         <SignUp />
       </div>
       <ChatBot />
-      
+
       <Newsletter />
       <Footer />
     </div>
