@@ -15,7 +15,7 @@ const User = new Schema({
     password: { type: String, required: true },
     email: { type: String, required: true, unique: true, trim: true },
     address: { type: String },
-    newLetter: { type: Boolean, default: false },
+    newsLetter: { type: Boolean, default: false },
     subscription: subscriptionSchema
 });
 
