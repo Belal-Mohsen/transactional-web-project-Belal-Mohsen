@@ -27,7 +27,7 @@ router.route('/getUser').get(async (req, res) => {
 // update a user's info
 router.route('/updateUser/:email').put(async (req, res) => {
     try {
-        const { fName, lName, password, address } = req.body;
+        const { fName, lName, password, address, newLetter, subscription } = req.body;
         const email = req.params.email;
         const updatedUser = await User.findOneAndUpdate(
             { email },
@@ -35,7 +35,11 @@ router.route('/updateUser/:email').put(async (req, res) => {
                 fName,
                 lName,
                 password,
-                address
+                email,
+                address,
+                newLetter,
+                subscription
+
             },
             { new: true }
         );
@@ -52,8 +56,9 @@ router.route('/updateUser/:email').put(async (req, res) => {
 
 // Create a new user
 router.route('/').post(async (req, res) => {
+    console.log(req.body)
     try {
-        const { fName, lName, password, email, address } = req.body;
+        const { fName, lName, password, email, address, newLetter, subscription } = req.body;
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -65,7 +70,9 @@ router.route('/').post(async (req, res) => {
             lName,
             password,
             email,
-            address
+            address,
+            newLetter,
+            subscription
         });
 
         res.status(200).json({ success: true, data: newUser });
