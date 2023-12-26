@@ -1,37 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({
+    fName: '',
+    lName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      console.error("Passwords do not match");
+      // TODO: pop-up for the user
+      return;
+    }
+
+    try {
+      const { confirmPassword, ...dataToSubmit } = formData;
+      const response = await axios.post('/user/register', dataToSubmit);
+      console.log('Registration successful:', response);
+      // TODO: redirect to another page
+    } catch (error) {
+      console.error("Error occurred:", error);
+      // // TODO: pop-up for the user
+    }
+  };
+
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">
       <div className="w-full max-w-md bg-[#f7f6f2] rounded border shadow-md p-6">
-        <h2 className="text-2xl font-medium text-[#342f19] mb-4 text-center">
-          SIGN UP
-        </h2>
-        <form className="space-y-4">
+        <h2 className="text-2xl font-medium text-[#342f19] mb-4 text-center">SIGN UP</h2>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <input
             type="text"
+            name="fName"
             placeholder="First Name"
             className="w-full p-2 border rounded"
+            value={formData.fName}
+            onChange={handleInputChange}
           />
           <input
             type="text"
+            name="lName"
             placeholder="Last Name"
             className="w-full p-2 border rounded"
+            value={formData.lName}
+            onChange={handleInputChange}
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
             className="w-full p-2 border rounded"
+            value={formData.email}
+            onChange={handleInputChange}
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
             className="w-full p-2 border rounded"
+            value={formData.password}
+            onChange={handleInputChange}
           />
           <input
             type="password"
+            name="confirmPassword"
             placeholder="Confirm Password"
             className="w-full p-2 border rounded"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
           />
           <div className="flex items-center gap-2">
             <input type="checkbox" />

@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
   ChatContainer,
@@ -23,13 +22,13 @@ const ChatBoxContainer = () => {
       sender: "user",
       direction: "outgoing",
     };
-    const newMessages = [...messages,newMessage];
+    const newMessages = [...messages, newMessage];
     setMessages(newMessages);
     // [TODO! Process messages!]
   };
 
   return (
-    <div style={{ position: "relative", height: "500px", width: "400px"}}>
+    <div style={{ position: "relative", height: "500px", width: "400px" }}>
       <MainContainer>
         <ChatContainer>
           <MessageList>

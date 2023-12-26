@@ -3,7 +3,6 @@ import TopBanner from "../components/TopBanner";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
-import SignUp from "../components/SignUp";
 import Shadow from "../components/Shadow";
 import ChatBot from "../components/ChatBot";
 import LogIn from "../components/LogIn";
