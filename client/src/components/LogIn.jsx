@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Notification from "./Notification";
 import { FaFacebook } from "react-icons/fa6";
 
 const LogIn = () => {
@@ -8,6 +9,7 @@ const LogIn = () => {
     password: ''
   });
 
+  const [notification, setNotification] = useState('');
   const loginUser = async (e) => {
     e.preventDefault();
     try {
@@ -16,7 +18,7 @@ const LogIn = () => {
       // TODO: redirect to another page
     } catch (error) {
       console.error("Error occurred:", error);
-      // TODO: pop-up to show the error
+      setNotification("Registration failed. Please try again.");
     }
   };
 
@@ -89,6 +91,7 @@ const LogIn = () => {
           </div>
         </form>
       </div>
+      <Notification message={notification} onClose={() => setNotification('')} />
     </div>
   );
 };
