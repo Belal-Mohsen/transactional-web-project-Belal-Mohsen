@@ -6,16 +6,17 @@ const LogIn = () => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
-
   });
 
   const loginUser = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
-      const response = await axios.get('/user/login');
-      console.log(response);
+      const response = await axios.post('/user/login', loginData);
+      console.log('Login successful:', response);
+      // TODO: redirect to another page
     } catch (error) {
       console.error("Error occurred:", error);
+      // TODO: pop-up to show the error
     }
   };
 

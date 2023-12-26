@@ -15,20 +15,31 @@ dotenv.config();
 const router = express.Router();
 
 //login
-router.route('/login').get(async (req, res) => {
+router.route('/login').post(async (req, res) => {
     try {
-        console.log(req.query)
-        const { email } = req.query;
-        const user = await User.findOne({ email });
-        if (user) {
-            res.status(200).json({ success: true, data: user });
-        } else {
-            res.status(404).json({ success: false, message: 'User not found' });
+        const { email, password } = req.body;
+        if (!validateEmail(email)) {
+            return res.status(400).json({ success: false, message: 'Invalid email format' });
         }
+        if (!password) {
+            return res.status(400).json({ success: false, message: 'Password is required' });
+        }
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            return res.status(401).json({ success: false, message: 'Invalid credentials' });
+        }
+        res.status(200).json({ success: true, message: 'Login successful', data: user });
     } catch (err) {
         res.status(500).json({ success: false, message: 'Unable to retrieve user, please try again' });
     }
 });
+
 
 
 // update a user's info

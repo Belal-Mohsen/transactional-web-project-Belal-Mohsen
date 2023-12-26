@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const subscriptionSchema = new Schema({
     style: {
@@ -73,6 +74,18 @@ const User = new Schema({
     {
         timestamps: true
     });
+
+User.pre('save', async function (next) {
+    if (this.isModified('password') || this.isNew) {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+    }
+    next();
+});
+
+User.methods.comparePassword = async function (candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
 
 const UserSchema = mongoose.model('User', User);
 
