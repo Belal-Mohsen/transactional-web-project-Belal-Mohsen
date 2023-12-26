@@ -2,7 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 
-import connectDB from './mongodb/connectdb.js';
+import connectDB from './config/connectdb.js';
 import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use('/user', userRoutes);
 
+// For testing
 app.get('/', async (req, res) => {
     res.status(200).json({
         message: 'Hello from Our server',

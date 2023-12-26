@@ -2,14 +2,14 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 
 
-import User from '../mongodb/models/user.js';
+import User from '../models/user.js';
 
 dotenv.config();
 
 const router = express.Router();
 
-// get a user's info
-router.route('/getUser').get(async (req, res) => {
+//login
+router.route('/login').get(async (req, res) => {
     try {
         const { email } = req.query;
         const user = await User.findOne({ email });
@@ -54,8 +54,8 @@ router.route('/updateUser/:email').put(async (req, res) => {
     }
 });
 
-// Create a new user
-router.route('/').post(async (req, res) => {
+// Register
+router.route('/register').post(async (req, res) => {
     try {
         const { fName, lName, password, email, address, newsLetter, subscription } = req.body;
 

@@ -65,7 +65,7 @@ const User = new Schema({
     subscription: subscriptionSchema
 },
     {
-        timestamps: ture
+        timestamps: true
     });
 
 const UserSchema = mongoose.model('User', User);
