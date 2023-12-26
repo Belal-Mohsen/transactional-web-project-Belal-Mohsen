@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Notification from "./Notification";
 import axios from "axios";
 
 const SignUp = () => {
@@ -9,6 +10,8 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
   });
+
+  const [notification, setNotification] = useState('');
 
   const handleInputChange = (e) => {
     setFormData({
@@ -22,7 +25,7 @@ const SignUp = () => {
 
     if (formData.password !== formData.confirmPassword) {
       console.error("Passwords do not match");
-      // TODO: pop-up for the user
+      setNotification("Passwords do not match.");
       return;
     }
 
@@ -33,7 +36,8 @@ const SignUp = () => {
       // TODO: redirect to another page
     } catch (error) {
       console.error("Error occurred:", error);
-      // // TODO: pop-up for the user
+      setNotification("Registration failed. Please try again.");
+
     }
   };
 
@@ -101,6 +105,7 @@ const SignUp = () => {
           </div>
         </form>
       </div>
+      <Notification message={notification} onClose={() => setNotification('')} />
     </div>
   );
 };
