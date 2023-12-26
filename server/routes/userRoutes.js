@@ -3,6 +3,12 @@ import * as dotenv from 'dotenv';
 
 
 import User from '../models/user.js';
+import {
+    validateEmail,
+    validatePassword,
+    validateName
+
+} from '../utils/validation.js'
 
 dotenv.config();
 
@@ -11,6 +17,7 @@ const router = express.Router();
 //login
 router.route('/login').get(async (req, res) => {
     try {
+        console.log(req.query)
         const { email } = req.query;
         const user = await User.findOne({ email });
         if (user) {
@@ -56,14 +63,28 @@ router.route('/updateUser/:email').put(async (req, res) => {
 
 // Register
 router.route('/register').post(async (req, res) => {
+
     try {
         const { fName, lName, password, email, address, newsLetter, subscription } = req.body;
+        if (!validateName(fName)) {
+            return res.status(400).json({ success: false, message: 'First name is required' });
+        }
+        if (!validateName(lName)) {
+            return res.status(400).json({ success: false, message: 'Last name is required' });
+        }
+
+        if (!validateEmail(email)) {
+            return res.status(400).json({ success: false, message: 'Invalid email format' });
+        }
+
+        if (!validatePassword(password)) {
+            return res.status(400).json({ success: false, message: 'Password is required and must be at least 6 characters long' });
+        }
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ success: false, message: 'Email already exists' });
         }
-
         const newUser = await User.create({
             fName,
             lName,
@@ -76,6 +97,7 @@ router.route('/register').post(async (req, res) => {
 
         res.status(200).json({ success: true, data: newUser });
     } catch (err) {
+        console.log(err)
         res.status(500).json({ success: false, message: 'Unable to create a user, please try again' });
     }
 });

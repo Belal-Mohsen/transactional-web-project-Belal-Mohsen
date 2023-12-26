@@ -19,7 +19,7 @@ const SignUpPage = () => {
         <LogIn />
       </div>
       <ChatBot />
-      
+
       <Newsletter />
       <Footer />
     </div>

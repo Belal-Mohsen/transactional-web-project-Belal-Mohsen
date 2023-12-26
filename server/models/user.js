@@ -3,26 +3,32 @@ import mongoose, { Schema } from 'mongoose';
 const subscriptionSchema = new Schema({
     style: {
         type: String,
+        default: "Unknown",
         required: true
     },
     area: {
         type: String,
+        default: "Unknown",
         required: true
     },
     holidays: {
         type: [{ type: String }],
+        default: ["Unknown"],
         required: true
     },
     color: {
         type: String,
+        default: "Unknown",
         required: true
     },
     images: {
         type: [{ type: String }],
+        default: ["Unknown"],
         required: true
     },
     date: {
-        type: Date, default: Date.now,
+        type: Date,
+        default: Date.now,
         required: true
     }
 },

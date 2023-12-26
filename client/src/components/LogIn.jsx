@@ -1,26 +1,47 @@
-import React from "react";
-import {FaFacebook} from "react-icons/fa6";
+import React, { useState } from "react";
+import axios from "axios";
+import { FaFacebook } from "react-icons/fa6";
 
 const LogIn = () => {
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
+
+  });
+
+  const loginUser = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.get('/user/login');
+      console.log(response);
+    } catch (error) {
+      console.error("Error occurred:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">
       <div className="w-full max-w-md bg-[#f7f6f2] rounded border shadow-md p-6">
         <h2 className="text-2xl font-medium text-[#767676] mb-4 text-center">
           LOG IN
         </h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={loginUser}>
           <input
             type="text"
             placeholder="Email"
             className="w-full p-2 border rounded"
+            value={loginData.email}
+            onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full p-2 border rounded"
+            value={loginData.password}
+            onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
           />
           <div className="flex items-center gap-2 text-[#767676]">
-            <input type="checkbox"/>
+            <input type="checkbox" />
             <span>
               Remember Me{" "}
             </span>
@@ -35,10 +56,10 @@ const LogIn = () => {
           </div>
           <div className="flex justify-between">
             <p className="text-[#c0876a] text-[13px]">
-                <a href="http://localhost:3000/signup" className="underline">Don’t have an account?</a>
+              <a href="http://localhost:3000/signup" className="underline">Don’t have an account?</a>
             </p>
             <p className="text-[#c0876a] text-[13px]">
-                <a href="/" className="underline">Forgot password?</a>
+              <a href="/" className="underline">Forgot password?</a>
             </p>
           </div>
           <div className="flex justify-center">
@@ -52,8 +73,8 @@ const LogIn = () => {
               <img
                 className="relative mr-4"
                 alt="Google Logo"
-                src="./images/Google.svg"/> 
-                LOG IN WITH GOOGLE
+                src="./images/Google.svg" />
+              LOG IN WITH GOOGLE
             </button>
           </div>
           <div>
@@ -61,8 +82,8 @@ const LogIn = () => {
               type="submit"
               className=" flex justify-center w-full bg-[#ffffff] text-[#767676] rounded border py-2 mt-4"
             >
-            <FaFacebook size= {30} color = "blue" style = {{marginRight: "15px", marginLeft: "20px"}}/> 
-                LOG IN WITH FACEBOOK
+              <FaFacebook size={30} color="blue" style={{ marginRight: "15px", marginLeft: "20px" }} />
+              LOG IN WITH FACEBOOK
             </button>
           </div>
         </form>
