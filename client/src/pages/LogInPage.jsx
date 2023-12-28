@@ -7,7 +7,7 @@ import Shadow from "../components/Shadow";
 import ChatBot from "../components/ChatBot";
 import LogIn from "../components/LogIn";
 
-const SignUpPage = () => {
+const LogInPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <TopBanner />
@@ -25,4 +25,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default LogInPage;

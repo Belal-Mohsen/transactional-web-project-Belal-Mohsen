@@ -5,6 +5,8 @@ import { FaFacebook } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
+import { auth, app } from '../firebase';
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({
@@ -13,22 +15,22 @@ const LogIn = () => {
   });
 
   const [notification, setNotification] = useState('');
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const loginUser = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/user/login', loginData);
-      console.log('Login successful:', response.data);
-      dispatch(loginSuccess(response.data));
-      navigate('/');
-    } catch (error) {
-      console.error("Error occurred:", error);
-      setNotification("Login failed. Please try again.");
-      dispatch(loginFailure());
-    }
+    signInWithEmailAndPassword(auth, loginData.email, loginData.password)
+      .then((userCredential) => {
+        console.log('Login successful:', userCredential);
+        dispatch(loginSuccess(userCredential));
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+        setNotification("Login failed. Please try again.");
+        dispatch(loginFailure());
+      });
   };
 
   return (
