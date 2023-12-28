@@ -3,6 +3,13 @@ const initialState = {
     user: null,
 };
 
+const savedUser = localStorage.getItem('user');
+if (savedUser) {
+    const parsedUser = JSON.parse(savedUser);
+    initialState.isAuthenticated = true;
+    initialState.user = parsedUser;
+}
+
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOGIN_SUCCESS':
@@ -18,7 +25,11 @@ const authReducer = (state = initialState, action) => {
                 user: null,
             };
         case 'LOGOUT':
-            return initialState;
+            return {
+                ...state,
+                isAuthenticated: false,
+                user: null,
+            };
         default:
             return state;
     }

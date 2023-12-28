@@ -22,7 +22,7 @@ const LogIn = () => {
     try {
       const response = await axios.post('/user/login', loginData);
       console.log('Login successful:', response.data);
-      dispatch(loginSuccess(response.data.user));
+      dispatch(loginSuccess(response.data));
       navigate('/');
     } catch (error) {
       console.error("Error occurred:", error);

@@ -1,12 +1,21 @@
-export const loginSuccess = (user) => ({
-    type: 'LOGIN_SUCCESS',
-    payload: user,
-});
+export const loginSuccess = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    return {
+        type: 'LOGIN_SUCCESS',
+        payload: user,
+    };
+};
 
-export const loginFailure = () => ({
-    type: 'LOGIN_FAILURE',
-});
+export const loginFailure = () => {
+    localStorage.removeItem('user');
+    return {
+        type: 'LOGIN_FAILURE',
+    };
+};
 
-export const logout = () => ({
-    type: 'LOGOUT',
-});
+export const logout = () => {
+    localStorage.removeItem('user');
+    return {
+        type: 'LOGOUT',
+    };
+};
