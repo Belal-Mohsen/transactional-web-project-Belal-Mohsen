@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Notification from "./Notification";
 import { FaFacebook } from "react-icons/fa6";
+import { useDispatch } from 'react-redux';
+import { loginSuccess, loginFailure } from '../actions/authActions';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({
@@ -10,15 +13,21 @@ const LogIn = () => {
   });
 
   const [notification, setNotification] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const loginUser = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/user/login', loginData);
-      console.log('Login successful:', response);
-      // TODO: redirect to another page
+      console.log('Login successful:', response.data);
+      dispatch(loginSuccess(response.data.user));
+      navigate('/');
     } catch (error) {
       console.error("Error occurred:", error);
-      setNotification("Registration failed. Please try again.");
+      setNotification("Login failed. Please try again.");
+      dispatch(loginFailure());
     }
   };
 
