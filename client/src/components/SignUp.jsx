@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Notification from "./Notification";
-import axios from "axios";
+import { auth, app } from '../firebase';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ const SignUp = () => {
   });
 
   const [notification, setNotification] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setFormData({
@@ -29,16 +32,20 @@ const SignUp = () => {
       return;
     }
 
-    try {
-      const { confirmPassword, ...dataToSubmit } = formData;
-      const response = await axios.post('/user/register', dataToSubmit);
-      console.log('Registration successful:', response);
-      // TODO: redirect to another page
-    } catch (error) {
-      console.error("Error occurred:", error);
-      setNotification("Registration failed. Please try again.");
-
-    }
+    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log('Registration successful:', user);
+        navigate('/login');
+        // TODO: redirect to another page or handle user data
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Error occurred:", error);
+        setNotification("Registration failed. Please try again.");
+      });
   };
 
   return (

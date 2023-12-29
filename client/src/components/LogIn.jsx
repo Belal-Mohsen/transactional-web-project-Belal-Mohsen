@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Notification from "./Notification";
 import { FaFacebook } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
