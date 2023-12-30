@@ -14,7 +14,7 @@ dotenv.config();
 
 const router = express.Router();
 
-//login
+login
 router.route('/login').post(async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -39,8 +39,6 @@ router.route('/login').post(async (req, res) => {
         res.status(500).json({ success: false, message: 'Unable to retrieve user, please try again' });
     }
 });
-
-
 
 // update a user's info
 router.route('/updateUser/:email').put(async (req, res) => {
@@ -76,7 +74,10 @@ router.route('/updateUser/:email').put(async (req, res) => {
 router.route('/register').post(async (req, res) => {
 
     try {
-        const { fName, lName, password, email, address, newsLetter, subscription } = req.body;
+        const { uid, fName, lName, password, email, address, newsLetter, subscription } = req.body;
+        if (!uid) {
+            return res.status(400).json({ success: false, message: 'Firebase UID is required' });
+        }
         if (!validateName(fName)) {
             return res.status(400).json({ success: false, message: 'First name is required' });
         }
@@ -97,6 +98,7 @@ router.route('/register').post(async (req, res) => {
             return res.status(400).json({ success: false, message: 'Email already exists' });
         }
         const newUser = await User.create({
+            uid,
             fName,
             lName,
             password,
@@ -112,5 +114,19 @@ router.route('/register').post(async (req, res) => {
         res.status(500).json({ success: false, message: 'Unable to create a user, please try again' });
     }
 });
+
+router.route('/user/profile/:uid').get(async (req, res) => {
+    const uid = req.params.uid;
+    try {
+        const user = await User.findOne({ uid: uid });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        res.status(200).json({ success: true, data: user });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error', error: error.message });
+    }
+});
+
 
 export default router;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Notification from "./Notification";
 import { auth, app } from '../firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
@@ -32,21 +32,31 @@ const SignUp = () => {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, formData.email, formData.password)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-        console.log('Registration successful:', user);
-        navigate('/login');
-        // TODO: redirect to another page or handle user data
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error("Error occurred:", error);
-        setNotification("Registration failed. Please try again.");
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+      const uid = user.uid; // Get the uid from the created user
+
+      // Update profile with displayName
+      await updateProfile(user, {
+        displayName: `${formData.fName} ${formData.lName}`,
       });
-  };
+
+      console.log('Registration successful:', user);
+
+      // Send additional user data to your backend
+      await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, uid: uid }) // Use the uid here
+      });
+
+      navigate('/login');
+    } catch (error) {
+      console.error("Error occurred:", error);
+      setNotification("Registration failed. Please try again.");
+    }
+};
 
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">

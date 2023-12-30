@@ -4,8 +4,8 @@ import { FaFacebook } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
-import { auth, app } from '../firebase';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, app, provider } from '../firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({
@@ -22,8 +22,8 @@ const LogIn = () => {
     signInWithEmailAndPassword(auth, loginData.email, loginData.password)
       .then((userCredential) => {
         console.log('Login successful:', userCredential);
-        dispatch(loginSuccess(userCredential));
-        navigate('/');
+        dispatch(loginSuccess(userCredential.user)); // Dispatch action with user data
+        navigate('/'); 
       })
       .catch((error) => {
         console.error("Error occurred:", error);
@@ -32,6 +32,19 @@ const LogIn = () => {
       });
   };
 
+  const googleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      dispatch(loginSuccess(user)); // Dispatch action with user data
+      navigate('/');
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+      setNotification('Google sign-in failed. Please try again.');
+      dispatch(loginFailure());
+    }
+  };
+      
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">
       <div className="w-full max-w-md bg-[#f7f6f2] rounded border shadow-md p-6">
@@ -82,6 +95,8 @@ const LogIn = () => {
             <button
               type="submit"
               className=" flex justify-center w-full bg-[#ffffff] text-[#767676] rounded border py-2 mt-4"
+              value="Sign In"
+              onClick={googleSignIn}
             >
               <img
                 className="relative mr-4"

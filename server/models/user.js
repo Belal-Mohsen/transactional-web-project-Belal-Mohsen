@@ -38,6 +38,11 @@ const subscriptionSchema = new Schema({
     });
 
 const User = new Schema({
+    uid: {
+        type: String,
+        required: true,
+        unique: true
+    },
     fName: {
         type: String,
         required: true

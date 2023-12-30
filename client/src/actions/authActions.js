@@ -1,8 +1,15 @@
 export const loginSuccess = (user) => {
-    localStorage.setItem('user', JSON.stringify(user));
+    const userData = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName // Ensure this line is included
+    };
+
+    localStorage.setItem('user', JSON.stringify(userData));
+    
     return {
         type: 'LOGIN_SUCCESS',
-        payload: user,
+        payload: userData,
     };
 };
 
