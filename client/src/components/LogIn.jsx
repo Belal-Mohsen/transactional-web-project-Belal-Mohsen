@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Notification from "./Notification";
 import { FaFacebook } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
-import { auth, app, provider } from '../firebase';
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, app, provider, facebookProvider } from '../firebase';
+import { signInWithEmailAndPassword, signInWithRedirect, getRedirectResult } from "firebase/auth";
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({
@@ -32,18 +32,45 @@ const LogIn = () => {
       });
   };
 
-  const googleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      dispatch(loginSuccess(user)); // Dispatch action with user data
-      navigate('/');
-    } catch (error) {
+  useEffect(() => {
+    getRedirectResult(auth)
+        .then((result) => {
+            if (result) {
+                // The signed-in user info.
+                const user = result.user;
+                dispatch(loginSuccess(user)); // Dispatch action with user data
+                navigate('/'); // Redirect to home page or dashboard after successful login
+            }
+        })
+        .catch((error) => {
+            console.error('Sign-in error:', error);
+            dispatch(loginFailure()); // Dispatch failure action
+            setNotification("Login failed. Please try again.");
+            
+        });
+}, [dispatch, navigate]);
+
+const googleSignIn = () => {
+  try {
+      signInWithRedirect(auth, provider);
+  } catch (error) {
       console.error('Google sign-in error:', error);
       setNotification('Google sign-in failed. Please try again.');
       dispatch(loginFailure());
-    }
-  };
+  }
+};
+
+const facebookSignIn = () => {
+  try {
+      signInWithRedirect(auth, facebookProvider);
+  } catch (error) {
+      console.error('Facebook sign-in error:', error);
+      setNotification('Facebook sign-in failed. Please try again.');
+      dispatch(loginFailure());
+  }
+};
+
+
       
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">
@@ -109,6 +136,8 @@ const LogIn = () => {
             <button
               type="submit"
               className=" flex justify-center w-full bg-[#ffffff] text-[#767676] rounded border py-2 mt-4"
+              value="Sign In"
+              onClick={facebookSignIn}
             >
               <FaFacebook size={30} color="blue" style={{ marginRight: "15px", marginLeft: "20px" }} />
               LOG IN WITH FACEBOOK
