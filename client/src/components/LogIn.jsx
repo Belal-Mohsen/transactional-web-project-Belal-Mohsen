@@ -112,7 +112,7 @@ const facebookSignIn = () => {
               <a href="http://localhost:3000/signup" className="underline">Don’t have an account?</a>
             </p>
             <p className="text-[#c0876a] text-[13px]">
-              <a href="/" className="underline">Forgot password?</a>
+              <a href="/forgotpassword" className="underline">Forgot password?</a>
             </p>
           </div>
           <div className="flex justify-center">

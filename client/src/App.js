@@ -11,6 +11,7 @@ import QuestionnairePage from './pages/QuestionnairePage';
 import CartPage from './pages/CartPage';
 import MyAccount from './pages/MyAccountPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 //import SubscribePage from './pages/SubscribePage';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LogInPage />} />
+          <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
           <Route path="/contactus" element={<ContactUsPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/faq" element={<FaqPage />} />
