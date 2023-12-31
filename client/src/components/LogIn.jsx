@@ -4,7 +4,7 @@ import { FaFacebook } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
-import { auth, app, provider, facebookProvider } from '../firebase';
+import { auth, provider, facebookProvider } from '../firebase';
 import { signInWithEmailAndPassword, signInWithRedirect, getRedirectResult } from "firebase/auth";
 
 const LogIn = () => {

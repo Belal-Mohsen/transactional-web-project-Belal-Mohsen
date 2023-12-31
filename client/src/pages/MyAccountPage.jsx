@@ -9,7 +9,7 @@ import ChatBot from '../components/ChatBot';
 import { useSelector } from 'react-redux';
 import { userSignOut } from '../utils/authUtils';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 
 
 const MyAccountPage = () => {
@@ -17,9 +17,10 @@ const MyAccountPage = () => {
   const user = useSelector(state => state.auth.user);
   const username = user ? user.displayName || user.email : "Guest";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignOut = () => {
-    userSignOut(navigate);
+    userSignOut(navigate, dispatch);
 };
 
   return (
