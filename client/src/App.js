@@ -12,6 +12,8 @@ import CartPage from './pages/CartPage';
 import MyAccount from './pages/MyAccountPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import PaymentCancelPage from './pages/PaymentCancelPage';
 //import SubscribePage from './pages/SubscribePage';
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/subscribe" element={<QuestionnairePage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/success" element={<PaymentSuccessPage />} />
+          <Route path="/cancel" element={<PaymentCancelPage />} />
           <Route path="/myaccount" element={
             <ProtectedRoute>
               <MyAccount />

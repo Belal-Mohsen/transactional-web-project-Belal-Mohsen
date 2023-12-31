@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { loadStripe } from "@stripe/stripe-js";
 import TopBanner from "../components/TopBanner";
 import NavBar from "../components/NavBar";
 import Shadow from "../components/Shadow";
@@ -6,6 +7,7 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import CartItem from "../components/CartItem";
 import ChatBot from '../components/ChatBot';
+import axios from 'axios';
 
 const CartPage = () => {
 
@@ -16,6 +18,32 @@ const CartPage = () => {
     { ide: 2, name: 'Item 2', image: "./images/image1.png", quantity: 5, price: 20 },
 
   ]);
+
+  const makePayment = async () => {
+    const stripe = await loadStripe("pk_test_51OTGT4EF5hvjq3vbnyUWgXON5tKfLqE8CkyNpkWxCelaYZPzlMsTt7gexLdPuyQCne9z1VjrMctBcYD8wdZKumlA00DPu8cXGj");
+    const body = {
+      product: cartItems
+    }
+
+    try {
+      const response = await axios.post("/checkout-session", body, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      const session = response.data;
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id
+      });
+
+      if (result.error) {
+        console.log(result.error);
+      }
+    } catch (error) {
+      console.error("Error during the checkout process", error);
+    }
+  }
 
   const handleIncrease = (itemId) => {
     const updatedCart = cartItems.map((item) => {
@@ -102,6 +130,7 @@ const CartPage = () => {
               <div className='flex justify-center justify-items-center mb-6'>
                 <button
                   className="px-4 py-2 bg-[#c0876a] text-white rounded-md w-1/2"
+                  onClick={makePayment}
                 >
                   CheckOut
                 </button>
