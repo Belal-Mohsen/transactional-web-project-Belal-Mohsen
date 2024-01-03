@@ -41,16 +41,16 @@ router.route('/login').post(async (req, res) => {
 });
 
 // update a user's info
-router.route('/updateUser/:email').put(async (req, res) => {
+router.route('/updateUser/:uid').put(async (req, res) => {
     try {
-        const { fName, lName, password, address, newsLetter, subscription } = req.body;
-        const email = req.params.email;
+        const { fName, lName, email, address, newsLetter, subscription } = req.body;
+        const uid = req.params.uid;
+        console.log(req.body)
         const updatedUser = await User.findOneAndUpdate(
-            { email },
+            { uid },
             {
                 fName,
                 lName,
-                password,
                 email,
                 address,
                 newsLetter,
@@ -60,12 +60,15 @@ router.route('/updateUser/:email').put(async (req, res) => {
             { new: true }
         );
 
+        console.log(updatedUser)
+
         if (updatedUser) {
             res.status(200).json({ success: true, data: updatedUser });
         } else {
             res.status(404).json({ success: false, message: 'User not found' });
         }
     } catch (err) {
+        console.log(err)
         res.status(500).json({ success: false, message: 'Unable to update the user, please try again' });
     }
 });
@@ -116,10 +119,11 @@ router.route('/register').post(async (req, res) => {
 
 
 
-router.route('/user/profile/:uid').get(async (req, res) => {
+router.route('/profile/:uid').get(async (req, res) => {
     const uid = req.params.uid;
     try {
         const user = await User.findOne({ uid: uid });
+        console.log(user)
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
