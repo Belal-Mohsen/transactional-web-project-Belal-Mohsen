@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Calendar from "../components/Calendar";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 
 const CalendarPage = () => {
     return (
@@ -21,7 +20,6 @@ const CalendarPage = () => {
         <div className="flex flex-1 items-center justify-center">
           <Calendar />
         </div>
-        <ChatBot />
         
         <Newsletter />
         <Footer />

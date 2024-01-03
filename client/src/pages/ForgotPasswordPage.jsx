@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 import ForgotPassword from "../components/ForgotPassword";
 
 const ForgotPasswordPage = () => {
@@ -17,7 +16,6 @@ const ForgotPasswordPage = () => {
       <div className="flex flex-1 items-center justify-center">
         <ForgotPassword />
       </div>
-      <ChatBot />
 
       <Newsletter />
       <Footer />

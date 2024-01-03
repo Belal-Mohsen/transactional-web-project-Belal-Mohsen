@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 import { MdCheckCircle } from 'react-icons/md';
 
 const PaymentSuccessPage = () => {
@@ -21,7 +20,6 @@ const PaymentSuccessPage = () => {
                 </div>
             </div>
 
-            <ChatBot />
             <Newsletter />
             <Footer />
         </div>

@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Questionnaire from "../components/Questionnaire";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 
 const QuestionnairePage = () => {
   return (
@@ -20,7 +19,6 @@ const QuestionnairePage = () => {
         <Questionnaire />
       </div>
 
-      <ChatBot />
 
       <Newsletter />
       <Footer />

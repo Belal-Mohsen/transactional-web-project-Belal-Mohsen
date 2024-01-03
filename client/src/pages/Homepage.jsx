@@ -9,7 +9,6 @@ import NavBar from "../components/NavBar";
 import OurStory from "../components/OurStory";
 import ImageCarousel from "../components/ImageCarousel";
 import WhatsHot from "../components/WhatsHot";
-import ChatBot from "../components/ChatBot";
 
 const Homepage = () => {
   return (
@@ -25,7 +24,6 @@ const Homepage = () => {
           <OurStory />
         </div>
       </div>
-      <ChatBot />
       <Newsletter />
       <Footer />
     </div>

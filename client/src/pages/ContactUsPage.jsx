@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 import ContactUs from "../components/ContactUs";
 
 const ContactUsPage = () => {
@@ -21,7 +20,6 @@ const ContactUsPage = () => {
       <div className="flex flex-1 items-center justify-center m-6">
         <ContactUs />
       </div>
-      <ChatBot />
 
       <Newsletter />
       <Footer />

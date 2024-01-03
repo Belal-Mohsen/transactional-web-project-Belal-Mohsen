@@ -15,32 +15,40 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import PaymentCancelPage from './pages/PaymentCancelPage';
 //import SubscribePage from './pages/SubscribePage';
+import ChatBot from "./components/ChatBot";
+import { StrictMode } from 'react';
 
 function App() {
+  // StrictMode conflicts with ChatBot, therefore ChatBot is moved outside of StrictMode
   return (
-    <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/login" element={<LogInPage />} />
-          <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
-          <Route path="/contactus" element={<ContactUsPage />} />
-          <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="/subscribe" element={<QuestionnairePage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/success" element={<PaymentSuccessPage />} />
-          <Route path="/cancel" element={<PaymentCancelPage />} />
-          <Route path="/myaccount" element={
-            <ProtectedRoute>
-              <MyAccount />
-            </ProtectedRoute>
+    <>
+    <StrictMode>
+      <Provider store={store}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LogInPage />} />
+            <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
+            <Route path="/contactus" element={<ContactUsPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/faq" element={<FaqPage />} />
+            <Route path="/subscribe" element={<QuestionnairePage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/success" element={<PaymentSuccessPage />} />
+            <Route path="/cancel" element={<PaymentCancelPage />} />
+            <Route path="/myaccount" element={
+              <ProtectedRoute>
+                <MyAccount />
+              </ProtectedRoute>
 
-          } />
-        </Routes>
-      </Router>
-    </Provider>
+            } />
+          </Routes>
+        </Router>
+      </Provider>
+    </StrictMode>
+    <ChatBot />
+  </>
   );
 }
 

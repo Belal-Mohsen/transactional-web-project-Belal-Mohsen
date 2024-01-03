@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Faq from "../components/Faq";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 
 const FaqPage = () => {
   return (
@@ -23,7 +22,6 @@ const FaqPage = () => {
       <div className="flex flex-1 items-top justify-center">
         <Faq />
       </div>
-      <ChatBot />
 
       <Newsletter />
       <Footer />

@@ -1,46 +1,35 @@
 import React from "react";
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-} from "@chatscope/chat-ui-kit-react";
-import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
-import { useState } from "react";
+import ChatBot from "react-simple-chatbot";
 
 const ChatBoxContainer = () => {
-  const [messages, setMessages] = useState([
+  const steps = [
     {
-      message: "Hello, I am a chatbot!",
-      sender: "Chatbot",
+      id: '1',
+      message: 'What number I am thinking?',
+      trigger: '2',
     },
-  ]);
-
-  const handelSend = async (message) => {
-    const newMessage = {
-      message: message,
-      sender: "user",
-      direction: "outgoing",
-    };
-    const newMessages = [...messages, newMessage];
-    setMessages(newMessages);
-    // [TODO! Process messages!]
-  };
+    {
+      id: '2',
+      options: [
+        { value: 1, label: 'Number 1', trigger: '4' },
+        { value: 2, label: 'Number 2', trigger: '3' },
+        { value: 3, label: 'Number 3', trigger: '1' },
+      ],
+    },
+    {
+      id: '3',
+      message: 'Wrong answer, try again.',
+      trigger: '2',
+    },
+    {
+      id: '4',
+      message: 'Awesome! You are a telepath!',
+      end: true,
+    },
+  ];
 
   return (
-    <div style={{ position: "relative", height: "500px", width: "400px" }}>
-      <MainContainer>
-        <ChatContainer>
-          <MessageList>
-            {messages.map((message, i) => {
-              return <Message key={i} model={message} />;
-            })}
-          </MessageList>
-          <MessageInput placeholder="Type message here" onSend={handelSend} />
-        </ChatContainer>
-      </MainContainer>
-    </div>
+    <ChatBot steps={steps} />
   );
 };
 

@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Shadow from "../components/Shadow";
-import ChatBot from "../components/ChatBot";
 import { MdCancel } from 'react-icons/md';
 
 const PaymentCancelPage = () => {
@@ -21,7 +20,6 @@ const PaymentCancelPage = () => {
                 </div>
             </div>
 
-            <ChatBot />
             <Newsletter />
             <Footer />
         </div>

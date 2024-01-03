@@ -5,7 +5,6 @@ import Shadow from "../components/Shadow";
 import Footer from "../components/Footer";
 import EditProfileForm from '../components/EditProfileForm';
 import Newsletter from '../components/Newsletter';
-import ChatBot from '../components/ChatBot';
 import { useSelector } from 'react-redux';
 import { userSignOut } from '../utils/authUtils';
 import { useNavigate } from 'react-router-dom';
@@ -53,7 +52,6 @@ const MyAccountPage = () => {
         </div>
 
       </div>
-      <ChatBot />
       <Newsletter />
       <Footer />
     </div>
