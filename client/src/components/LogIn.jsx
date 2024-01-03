@@ -40,6 +40,7 @@ const LogIn = () => {
           const user = result.user;
           dispatch(loginSuccess(user)); // Dispatch action with user data
 
+<<<<<<< Updated upstream
           try {
             const response = await fetch('/user/register', {
               method: 'POST',
@@ -89,6 +90,27 @@ const LogIn = () => {
     }
   };
 
+=======
+const googleSignIn = async () => {
+  try {
+    await signInWithRedirect(auth, provider);
+  } catch (error) {
+    console.error('Google sign-in error:', error);
+    setNotification('Google sign-in failed. Please try again.');
+    dispatch(loginFailure());
+  }
+};
+
+const facebookSignIn = async () => {
+  try {
+    await signInWithRedirect(auth, facebookProvider);
+  } catch (error) {
+    console.error('Facebook sign-in error:', error);
+    setNotification('Facebook sign-in failed. Please try again.');
+    dispatch(loginFailure());
+  }
+};
+>>>>>>> Stashed changes
 
 
   return (

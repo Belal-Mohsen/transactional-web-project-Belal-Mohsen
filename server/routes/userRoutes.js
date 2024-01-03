@@ -43,9 +43,14 @@ router.route('/login').post(async (req, res) => {
 // update a user's info
 router.route('/updateUser/:uid').put(async (req, res) => {
     try {
+<<<<<<< Updated upstream
         const { fName, lName, email, address, newsLetter, subscription } = req.body;
         const uid = req.params.uid;
         console.log(req.body)
+=======
+        const { fName, lName, password, address, newsLetter, subscription } = req.body;
+        const uid = req.params.uid;
+>>>>>>> Stashed changes
         const updatedUser = await User.findOneAndUpdate(
             { uid },
             {
