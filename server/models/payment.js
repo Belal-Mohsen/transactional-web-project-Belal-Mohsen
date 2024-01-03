@@ -42,7 +42,8 @@ const Payment = new Schema({
         default: false
     },
     paidAt: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 },
     {
