@@ -30,10 +30,10 @@ const EditProfileForm = () => {
                     const userData = await response.json();
                     console.log("Received data:", userData);
                     setFormData({
-                        fName: userData.fName,
-                        lName: userData.lName,
-                        email: userData.email,
-                        address: userData.address,
+                        fName: userData.data.fName,
+                        lName: userData.data.lName,
+                        email: userData.data.email,
+                        address: userData.data.address,
                     });
                 } catch (error) {
                     console.error("Error fetching user data:", error);
