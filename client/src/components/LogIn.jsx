@@ -23,7 +23,7 @@ const LogIn = () => {
       .then((userCredential) => {
         console.log('Login successful:', userCredential);
         dispatch(loginSuccess(userCredential.user)); // Dispatch action with user data
-        navigate('/'); 
+        navigate('/');
       })
       .catch((error) => {
         console.error("Error occurred:", error);
@@ -34,44 +34,63 @@ const LogIn = () => {
 
   useEffect(() => {
     getRedirectResult(auth)
-        .then((result) => {
-            if (result) {
-                // The signed-in user info.
-                const user = result.user;
-                dispatch(loginSuccess(user)); // Dispatch action with user data
-                navigate('/'); // Redirect to home page or dashboard after successful login
-            }
-        })
-        .catch((error) => {
-            console.error('Sign-in error:', error);
-            dispatch(loginFailure()); // Dispatch failure action
-            setNotification("Login failed. Please try again.");
-            
-        });
-}, [dispatch, navigate]);
+      .then(async (result) => {
+        if (result) {
+          // The signed-in user info.
+          const user = result.user;
+          dispatch(loginSuccess(user)); // Dispatch action with user data
 
-const googleSignIn = () => {
-  try {
+          try {
+            const response = await fetch('/user/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: user.email,
+                uid: user.uid,
+                fullName: user.displayName,
+                photoURL: user.photoURL,
+                providerId: user.providerData[0].providerId
+              })
+            });
+            const data = await response.json();
+            console.log(data.message);
+          } catch (error) {
+            console.error('Error in saving new user:', error);
+          }
+
+          navigate('/'); // Redirect to home page or dashboard after successful login
+        }
+      })
+      .catch((error) => {
+        console.error('Sign-in error:', error);
+        dispatch(loginFailure()); // Dispatch failure action
+        setNotification("Login failed. Please try again.");
+
+      });
+  }, [dispatch, navigate]);
+
+  const googleSignIn = () => {
+    try {
       signInWithRedirect(auth, provider);
-  } catch (error) {
+    } catch (error) {
       console.error('Google sign-in error:', error);
       setNotification('Google sign-in failed. Please try again.');
       dispatch(loginFailure());
-  }
-};
+    }
+  };
 
-const facebookSignIn = () => {
-  try {
+  const facebookSignIn = () => {
+    try {
       signInWithRedirect(auth, facebookProvider);
-  } catch (error) {
+    } catch (error) {
       console.error('Facebook sign-in error:', error);
       setNotification('Facebook sign-in failed. Please try again.');
       dispatch(loginFailure());
-  }
-};
+    }
+  };
 
 
-      
+
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">
       <div className="w-full max-w-md bg-[#f7f6f2] rounded border shadow-md p-6">

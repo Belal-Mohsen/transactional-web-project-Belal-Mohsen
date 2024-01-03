@@ -3,6 +3,8 @@ import Notification from "./Notification";
 import { auth, app } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -45,18 +47,22 @@ const SignUp = () => {
       console.log('Registration successful:', user);
 
       // Send additional user data to your backend
-      await fetch('/register', {
+      await fetch('/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, uid: uid }) // Use the uid here
       });
 
-      navigate('/login');
+
+      setNotification("Registration successful! Redirecting to login...");
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
     } catch (error) {
       console.error("Error occurred:", error);
       setNotification("Registration failed. Please try again.");
     }
-};
+  };
 
   return (
     <div className="flex flex-col items-center w-full px-4 md:px-20 py-10">

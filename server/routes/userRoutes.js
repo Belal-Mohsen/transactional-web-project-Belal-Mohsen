@@ -72,48 +72,49 @@ router.route('/updateUser/:email').put(async (req, res) => {
 
 // Register
 router.route('/register').post(async (req, res) => {
-
     try {
-        const { uid, fName, lName, password, email, address, newsLetter, subscription } = req.body;
+        const { uid, fName, lName, email, address, newsLetter, subscription, fullName } = req.body;
         if (!uid) {
             return res.status(400).json({ success: false, message: 'Firebase UID is required' });
-        }
-        if (!validateName(fName)) {
-            return res.status(400).json({ success: false, message: 'First name is required' });
-        }
-        if (!validateName(lName)) {
-            return res.status(400).json({ success: false, message: 'Last name is required' });
         }
 
         if (!validateEmail(email)) {
             return res.status(400).json({ success: false, message: 'Invalid email format' });
         }
 
-        if (!validatePassword(password)) {
-            return res.status(400).json({ success: false, message: 'Password is required and must be at least 6 characters long' });
+        const existingUser = await User.findOne({ uid });
+        if (existingUser) {
+            return res.status(400).json({ success: false, message: 'User already exists' });
         }
 
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ success: false, message: 'Email already exists' });
-        }
-        const newUser = await User.create({
+        let newUser = {
             uid,
             fName,
             lName,
-            password,
             email,
             address,
             newsLetter,
-            subscription
-        });
+            subscription,
+        };
 
-        res.status(200).json({ success: true, data: newUser });
+        if (fullName) {
+            const nameParts = fullName.split(' ');
+            newUser.fName = nameParts[0];
+            if (nameParts.length > 1) {
+                newUser.lName = nameParts.slice(1).join(' ');
+            }
+        }
+
+        const createdUser = await User.create(newUser);
+
+        res.status(200).json({ success: true, data: createdUser });
     } catch (err) {
         console.log(err)
         res.status(500).json({ success: false, message: 'Unable to create a user, please try again' });
     }
 });
+
+
 
 router.route('/user/profile/:uid').get(async (req, res) => {
     const uid = req.params.uid;
