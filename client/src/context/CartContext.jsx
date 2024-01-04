@@ -25,12 +25,30 @@ export const CartContextProvider = (props) => {
     return totalAmount;
   };
 
+  const getTotalCartItems = () => {
+    let totalItems = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItems += cartItems[item];
+      }
+    }
+    return totalItems;
+  };
+
+  const getItemQuantity = (itemId) => {
+    return cartItems[itemId];
+  }
+
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
   };
 
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+  };
+
+  const deleteFromCart = (itemId) => {
+    setCartItems((prev) => ({ ...prev, [itemId]: 0 }));
   };
 
   const updateCartItemCount = (newAmount, itemId) => {
@@ -46,7 +64,10 @@ export const CartContextProvider = (props) => {
     addToCart,
     updateCartItemCount,
     removeFromCart,
+    deleteFromCart,
+    getItemQuantity,
     getTotalCartAmount,
+    getTotalCartItems,
     checkout,
   };
 
