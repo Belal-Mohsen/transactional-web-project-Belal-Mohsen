@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react";
 import TopBanner from "../components/TopBanner";
 import NavBar from "../components/NavBar";
 import Shadow from "../components/Shadow";
@@ -9,50 +9,51 @@ import { useSelector } from 'react-redux';
 import { userSignOut } from '../utils/authUtils';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Notification from "../components/Notification";
 
 
 const MyAccountPage = () => {
   // Access the user data from the Redux store
   const user = useSelector(state => state.auth.user);
   const username = user ? user.displayName || user.email : "Guest";
+  const [notification, setNotification] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
     userSignOut(navigate, dispatch);
-};
+  };
 
-const handleDeleteAccount = () => {
-  if (window.confirm("Are you sure you want to permanently delete your account? This action cannot be undone.")) {
+  const handleDeleteAccount = () => {
+    if (window.confirm("Are you sure you want to permanently delete your account? This action cannot be undone.")) {
       deleteAccount();
+    }
   }
-}
 
-//This is a skeleton version of the method 
-const deleteAccount = async () => {
-  try {
-      //need API for deleting user
-      const response = await fetch('/api/deleteAccount', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          // Include authentication token if necessary
+  const deleteAccount = async () => {
+    try {
+      const response = await fetch(`/user/deleteUser/${user.uid}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
 
       const data = await response.json();
-      if (data.success) {
-          // Handle successful deletion
-          // Maybe redirect to a goodbye page or the homepage
-          // Log out the user
+      if (response.ok) {
+        console.log('Account deleted successfully', data);
+        setNotification('Account deleted successfully');
+        userSignOut(navigate, dispatch);
+        Notification()
+        navigate('/');
       } else {
-          // Handle failure (show message to the user)
+        console.error('Failed to delete account', data.message);
+        setNotification('Failed to delete account');
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error deleting account:', error);
-      // Handle error (show message to the user)
+    }
   }
-}
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -87,6 +88,7 @@ const deleteAccount = async () => {
       </div>
       <Newsletter />
       <Footer />
+      <Notification message={notification} onClose={() => setNotification('')} />
     </div>
   )
 }

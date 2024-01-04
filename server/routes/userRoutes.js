@@ -134,5 +134,19 @@ router.route('/profile/:uid').get(async (req, res) => {
     }
 });
 
+router.route('/deleteUser/:uid').delete(async (req, res) => {
+    const uid = req.params.uid;
+    console.log(uid)
+    try {
+        const user = await User.findOneAndDelete({ uid: uid });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        res.status(200).json({ success: true, message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error', error: error.message });
+    }
+});
+
 
 export default router;
