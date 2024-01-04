@@ -44,7 +44,6 @@ const MyAccountPage = () => {
         console.log('Account deleted successfully', data);
         setNotification('Account deleted successfully');
         userSignOut(navigate, dispatch);
-        Notification()
         navigate('/');
       } else {
         console.error('Failed to delete account', data.message);
