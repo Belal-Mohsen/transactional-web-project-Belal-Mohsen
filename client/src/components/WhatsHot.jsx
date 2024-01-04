@@ -1,10 +1,48 @@
-import React from "react";
+import React from 'react';
 import { PiShoppingCartDuotone } from "react-icons/pi";
-import { holidayBoxes } from "../holidayBoxes";
-import { CartContext } from "../context/CartContext";
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../actions/cartActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WhatsHot = () => {
-  const { addToCart, cartItems } = React.useContext(CartContext);
+
+  const holidayBoxes = [
+    {
+      id: 1,
+      name: 'Christmas Box',
+      price: '69',
+      discount: '55',
+      image: './images/christmasBox.png'
+    },
+    {
+      id: 2,
+      name: 'New Year Box',
+      price: '69',
+      image: './images/newyearBox.png'
+    },
+    {
+      id: 3,
+      name: 'Valentine Box',
+      price: '69',
+      image: './images/valentineBox.png'
+    }
+  ];
+
+  const dispatch = useDispatch();
+
+  const handleClick = (holidayBox) => {
+    dispatch(addItemToCart({
+      id: holidayBox.id,
+      name: holidayBox.name,
+      price: holidayBox.discount || holidayBox.price,
+      image: holidayBox.image
+    }));
+    toast.success(`${holidayBox.name} added to cart!`, {
+      position: "top-right",
+      autoClose: 1000,
+    });
+  };
 
   return (
     <div className="max-w-7xl mx-auto p-4">
@@ -14,11 +52,8 @@ const WhatsHot = () => {
             WHAT'S HOT
           </h2>
         </div>
-        <a
-          href="/subscribe"
-          className="text-base md:text-xs font-thin whitespace-nowrap"
-        >
-          GET STARTED {">"}
+        <a href="/subscribe" className="text-base md:text-xs font-thin whitespace-nowrap">
+          GET STARTED {'>'}
         </a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -35,13 +70,12 @@ const WhatsHot = () => {
                   {holidayBox.name}
                 </h2>
                 <p className="text-[16px] font-light text-gray-600">
-                  from{" "}
-                  {holidayBox.discount ? (
+                  from {holidayBox.discount ? (
                     <>
-                      {" "}
+                      {' '}
                       <span className="text-red-600 line-through">
                         {holidayBox.price}
-                      </span>{" "}
+                      </span>{' '}
                       <span className="text-green-600">
                         {holidayBox.discount}
                       </span>
@@ -51,13 +85,14 @@ const WhatsHot = () => {
                   )}
                 </p>
               </div>
-              <button onClick={() => addToCart(holidayBox.id)}>
-                <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />{cartItems[holidayBox.id] > 0 && <> ({cartItems[holidayBox.id]})</>}
+              <button onClick={() => handleClick(holidayBox)}>
+                <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
               </button>
             </div>
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 };

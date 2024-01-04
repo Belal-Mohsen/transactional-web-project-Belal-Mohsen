@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { BsList, BsX } from 'react-icons/bs';
 import { PiShoppingCartDuotone } from "react-icons/pi";
 import { MdOutlineAccountCircle } from "react-icons/md";
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const cartItems = useSelector(state => state.cart.items);
+
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,8 +33,13 @@ const NavBar = () => {
           <Link to="/contactus" className="hover:[color:#7d5844]">Contact Us</Link>
         </div>
         <div className="z-10 flex gap-4">
-          <Link to="/cart">
+          <Link to="/cart" className="relative">
             <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
+            {totalItems > 0 && (
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                {totalItems}
+              </span>
+            )}
           </Link>
           <Link to="/myaccount">
             <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />
@@ -72,8 +81,13 @@ const NavBar = () => {
 
               </ul>
               <div className='flex pl-4 gap-4 pb-3'>
-                <Link to="/cart">
+                <Link to="/cart" className="relative">
                   <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
+                  {totalItems > 0 && (
+                    <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                      {totalItems}
+                    </span>
+                  )}
                 </Link>
                 <Link to="/myaccount">
                   <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />

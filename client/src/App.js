@@ -17,15 +17,13 @@ import PaymentCancelPage from './pages/PaymentCancelPage';
 //import SubscribePage from './pages/SubscribePage';
 import ChatBot from "./components/ChatBot";
 import { StrictMode } from 'react';
-import { CartContextProvider } from './context/CartContext';
 
 function App() {
   // StrictMode conflicts with ChatBot, therefore ChatBot is moved outside of StrictMode
   return (
     <>
-    <StrictMode>
-      <Provider store={store}>
-        <CartContextProvider>
+      <StrictMode>
+        <Provider store={store}>
           <Router>
             <Routes>
               <Route path="/" element={<Homepage />} />
@@ -43,14 +41,14 @@ function App() {
                 <ProtectedRoute>
                   <MyAccount />
                 </ProtectedRoute>
+
               } />
             </Routes>
           </Router>
-        </CartContextProvider>
-      </Provider>
-    </StrictMode>
-    <ChatBot />
-  </>
+        </Provider>
+      </StrictMode>
+      <ChatBot />
+    </>
   );
 }
 
