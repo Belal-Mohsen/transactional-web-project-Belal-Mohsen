@@ -22,6 +22,38 @@ const MyAccountPage = () => {
     userSignOut(navigate, dispatch);
 };
 
+const handleDeleteAccount = () => {
+  if (window.confirm("Are you sure you want to permanently delete your account? This action cannot be undone.")) {
+      deleteAccount();
+  }
+}
+
+//This is a skeleton version of the method 
+const deleteAccount = async () => {
+  try {
+      //need API for deleting user
+      const response = await fetch('/api/deleteAccount', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          // Include authentication token if necessary
+      });
+
+      const data = await response.json();
+      if (data.success) {
+          // Handle successful deletion
+          // Maybe redirect to a goodbye page or the homepage
+          // Log out the user
+      } else {
+          // Handle failure (show message to the user)
+      }
+  } catch (error) {
+      console.error('Error deleting account:', error);
+      // Handle error (show message to the user)
+  }
+}
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <TopBanner />
@@ -42,6 +74,7 @@ const MyAccountPage = () => {
             <a href="/subscribe" className="mb-4 font-semibold text-[#342f19]">
               Manage Your Subscription
             </a>
+            <button onClick={handleDeleteAccount} className="px-4 py-2 bg-red-700 text-white rounded-md mb-4">Delete Account</button>
             <button onClick={handleSignOut} className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md">Sign Out</button>
           </div>
 
