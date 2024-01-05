@@ -6,7 +6,7 @@ const OurStory = () => {
     <div className="flex flex-col md:flex-row">
       <div className="md:w-1/2">
         <img
-          src="./images/story.jpeg"
+          src="./images/story1.png"
           alt="Decorating Christmas Tree"
           className="w-full h-auto md:h-full object-cover rounded-tl-10 rounded-bl-10"
         />
