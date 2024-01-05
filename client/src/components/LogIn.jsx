@@ -126,7 +126,7 @@ const LogIn = () => {
           </div>
           <div className="flex justify-between">
             <p className="text-[#c0876a] text-[13px]">
-              <a href="http://localhost:3000/signup" className="underline">Don’t have an account?</a>
+              <a href="/signup" className="underline">Don’t have an account?</a>
             </p>
             <p className="text-[#c0876a] text-[13px]">
               <a href="/forgotpassword" className="underline">Forgot password?</a>
