@@ -21,7 +21,7 @@ const Banner = () => {
         </div>
       </div>
       <img
-        className="absolute right-0 top-6 object-cover sm:hidden md:hidden lg:hidden xl:block"
+        className="hidden xl:block absolute right-0 top-6 object-cover"
         alt="Banner"
         src="https://c.animaapp.com/qqWqs49g/img/bannerimage.png"
       />
