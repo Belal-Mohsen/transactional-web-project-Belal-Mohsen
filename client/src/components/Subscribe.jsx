@@ -1,30 +1,112 @@
 import React from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const Subscribe = () => {
-
   let { state } = useLocation();
   console.log(state);
-  console.log(state.value[1]);
-  console.log(state.value[2]);
-  console.log(state.value[3]);
-  console.log(state.value[4]);
+
+  let imageName = GetImageName(state.value);
+
+  console.log(imageName);
+
+  const sourceImage = `./images/Subscribe_img/${imageName}.png`;
   return (
-    <div className="flex flex-wrap w-full max-w-[1200px] mx-auto">
-      {/* First block - Top left */}
-      <div className="w-full text-center mb-4 md:mb-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-          <div className="mb-10">
-            <img
-              className="w-full h-auto md:w-[368px] md:h-[498px] lg:w-[420px] lg:h-[420px]"
-              src="./images/valentineBox.png"
-              alt="Image 3"
-            />
-          </div>
-        </div>
+    <div className="flex justify-center items-center w-full h-screen"> {/* Centered container */}
+      <div className="text-center">
+        <img
+          className="mx-auto" 
+          src={sourceImage}
+          alt="Subscription"
+        />
       </div>
     </div>
   );
 };
 
+const GetImageName = (selectedImages) => {
+  let imageName = "";
+  console.log("GetImageName");
+  console.log(selectedImages[1][0]);
+  console.log(selectedImages[2][0]);
+  console.log(selectedImages[3][0]);
+  console.log(selectedImages[4][0]);
+  switch (selectedImages[2][0]) {
+    case 4:
+      imageName += "dining";
+      break;
+
+    case 5:
+      imageName += "living";
+      break;
+
+    case 6:
+      imageName += "kitchen";
+      break;
+
+    default:
+      break;
+  }
+
+  imageName += "_";
+
+  switch (selectedImages[3][0]) {
+    case 7:
+    case 13:
+      imageName += "newyear_christmas";
+      break;
+
+    case 11:
+    case 12:
+      imageName += "thanks";
+      break;
+
+    case 8:
+    case 9:
+      imageName += "valentine";
+      break;
+
+    case 10:
+      imageName += "easter";
+      break;
+
+    default:
+      break;
+  }
+
+  imageName += "_";
+
+  switch (selectedImages[4][0]) {
+    case 14:
+      imageName += "blue";
+      break;
+
+    case 15:
+      imageName += "green";
+      break;
+
+    case 16:
+      imageName += "orange";
+      break;
+
+    case 17:
+      imageName += "gray";
+      break;
+
+    case 18:
+      imageName += "pink";
+      break;
+
+    case 19:
+      imageName += "purple";
+      break;
+
+    case 20:
+      imageName += "red";
+      break;
+
+    default:
+      break;
+  }
+  return imageName;
+};
 export default Subscribe;
