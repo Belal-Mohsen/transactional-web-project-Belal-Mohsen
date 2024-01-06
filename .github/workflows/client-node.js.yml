@@ -11,9 +11,8 @@ on:
       - '.github/workflows/client-node.js.yml'
 
 jobs:
-  build:
-
-    runs-on: self-hosted
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -22,10 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: List files in client directory
-      working-directory: ./client
-      run: ls -la
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -39,3 +34,13 @@ jobs:
     - name: Build
       working-directory: ./client
       run: npm run build --if-present
+
+    - name: Deploy to EC2
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-rltgoDzvO --delete"
+        SOURCE: "client/build/"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.REMOTE_TARGET }}
