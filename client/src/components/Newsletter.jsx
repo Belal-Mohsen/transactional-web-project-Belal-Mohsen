@@ -11,7 +11,7 @@ const Newsletter = () => {
 
     try {
       // Replace 'your-api-endpoint' with your actual newsletter subscription API endpoint
-      const response = await axios.post('/your-api-endpoint', { email });
+      const response = await axios.post('/api/your-api-endpoint', { email });
       setEmail(""); // Clear the email field after successful submission
 
       // Show success message
