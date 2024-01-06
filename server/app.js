@@ -14,15 +14,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/user', userRoutes);
-app.use('/order', orderRoutes);
-app.use('/box', boxRoutes);
-app.use('/checkout-session', stripeRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/order', orderRoutes);
+app.use('/api/box', boxRoutes);
+app.use('/api/checkout-session', stripeRoutes)
 
 // For testing
-app.get('/', async (req, res) => {
+app.get('/api', async (req, res) => {
     res.status(200).json({
         message: 'Hello from Our server',
+    });
+});
+
+app.get('/test', async (req, res) => {
+    res.status(200).json({
+        message: 'test end-point from the server!',
     });
 });
 
