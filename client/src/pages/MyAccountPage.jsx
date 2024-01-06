@@ -32,7 +32,7 @@ const MyAccountPage = () => {
 
   const deleteAccount = async () => {
     try {
-      const response = await fetch(`/api/user/deleteUser/${user.uid}`, {
+      const response = await fetch(`/user/deleteUser/${user.uid}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ const EditProfileForm = () => {
       if (firebaseUser) {
         setLoading(true);
         try {
-          const response = await fetch(`/api/user/profile/${firebaseUser.uid}`);
+          const response = await fetch(`/user/profile/${firebaseUser.uid}`);
           if (!response.ok) throw new Error("Failed to fetch user data");
           const userData = await response.json();
           console.log("Received data:", userData);
@@ -87,7 +87,7 @@ const EditProfileForm = () => {
     }
 
     try {
-      const response = await fetch(`/api/user/updateUser/${uid}`, {
+      const response = await fetch(`/user/updateUser/${uid}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

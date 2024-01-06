@@ -51,7 +51,7 @@ const SignUp = () => {
       console.log("Registration successful:", user);
 
       // Send additional user data to your backend
-      await fetch("/api/user/register", {
+      await fetch("/user/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, uid: uid }), // Use the uid here

@@ -33,7 +33,7 @@ const CartPage = () => {
     }
 
     try {
-      const response = await axios.post("/api/checkout-session", body, {
+      const response = await axios.post("/checkout-session", body, {
         headers: {
           "Content-Type": "application/json"
         }
