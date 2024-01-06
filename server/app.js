@@ -28,6 +28,12 @@ app.get('/', async (req, res) => {
     });
 });
 
+app.get('/test', async (req, res) => {
+    res.status(200).json({
+        message: 'test end-point from the server!',
+    });
+});
+
 
 const startServer = async () => {
     try {
