@@ -5,6 +5,8 @@ import stripe from "stripe";
 dotenv.config();
 const router = express.Router();
 const stripeClient = stripe(process.env.STRIPE_SECRET);
+const successUrl = process.env.SUCCESS_URL || "http://localhost:3000/success";
+const cancelUrl = process.env.CANCEL_URL || "http://localhost:3000/cancel";
 
 router.route("/").post(async (req, res) => {
     try {
@@ -29,8 +31,8 @@ router.route("/").post(async (req, res) => {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:3000/success",
-            cancel_url: "http://localhost:3000/cancel",
+            success_url: successUrl,
+            cancel_url: cancelUrl,
         });
 
         res.json({ id: session.id });
