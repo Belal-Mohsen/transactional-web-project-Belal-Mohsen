@@ -41,7 +41,7 @@ const LogIn = () => {
           dispatch(loginSuccess(user)); // Dispatch action with user data
 
           try {
-            const response = await fetch('/user/register', {
+            const response = await fetch('http://main.d2ctub1uon7ubc.amplifyapp.com/user/register', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({

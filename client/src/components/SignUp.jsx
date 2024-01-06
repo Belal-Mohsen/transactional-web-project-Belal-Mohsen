@@ -47,7 +47,7 @@ const SignUp = () => {
       console.log('Registration successful:', user);
 
       // Send additional user data to your backend
-      await fetch('/user/register', {
+      await fetch('http://main.d2ctub1uon7ubc.amplifyapp.com/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, uid: uid }) // Use the uid here
