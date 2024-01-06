@@ -41,8 +41,5 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         script: |
           cd ${{ secrets.REMOTE_TARGET_SERVER }}
-          export MONGODB_URL=${{ secrets.MONGODB_URL }}
-          export STRIPE_SECRET=${{ secrets.STRIPE_SECRET }}
-          export PORT=${{ secrets.PORT }}
           npm install --production
           pm2 restart unbox-server
