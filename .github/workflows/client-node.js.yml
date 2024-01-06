@@ -22,11 +22,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: cd client
+
+    - name: List files in client directory
+      working-directory: ./client
+      run: ls -la
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+
+    - name: Install Dependencies
+      working-directory: ./client
+      run: npm ci
+
+    - name: Build
+      working-directory: ./client
+      run: npm run build --if-present
