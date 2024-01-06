@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Notification from "./Notification";
 import { FaFacebook } from "react-icons/fa6";
-import { useDispatch } from 'react-redux';
-import { loginSuccess, loginFailure } from '../actions/authActions';
-import { useNavigate } from 'react-router-dom';
-import { auth, provider, facebookProvider } from '../firebase';
-import { signInWithEmailAndPassword, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { loginSuccess, loginFailure } from "../actions/authActions";
+import { useNavigate } from "react-router-dom";
+import { auth, provider, facebookProvider } from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+  getRedirectResult,
+} from "firebase/auth";
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
-  const [notification, setNotification] = useState('');
+  const [notification, setNotification] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,9 +25,9 @@ const LogIn = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, loginData.email, loginData.password)
       .then((userCredential) => {
-        console.log('Login successful:', userCredential);
+        console.log("Login successful:", userCredential);
         dispatch(loginSuccess(userCredential.user)); // Dispatch action with user data
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error occurred:", error);
@@ -41,31 +45,30 @@ const LogIn = () => {
           dispatch(loginSuccess(user)); // Dispatch action with user data
 
           try {
-            const response = await fetch('http://main.d2ctub1uon7ubc.amplifyapp.com/user/register', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+            const response = await fetch("/user/register", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 email: user.email,
                 uid: user.uid,
                 fullName: user.displayName,
                 photoURL: user.photoURL,
-                providerId: user.providerData[0].providerId
-              })
+                providerId: user.providerData[0].providerId,
+              }),
             });
             const data = await response.json();
             console.log(data.message);
           } catch (error) {
-            console.error('Error in saving new user:', error);
+            console.error("Error in saving new user:", error);
           }
 
-          navigate('/'); // Redirect to home page or dashboard after successful login
+          navigate("/"); // Redirect to home page or dashboard after successful login
         }
       })
       .catch((error) => {
-        console.error('Sign-in error:', error);
+        console.error("Sign-in error:", error);
         dispatch(loginFailure()); // Dispatch failure action
         setNotification("Login failed. Please try again.");
-
       });
   }, [dispatch, navigate]);
 
@@ -73,8 +76,8 @@ const LogIn = () => {
     try {
       signInWithRedirect(auth, provider);
     } catch (error) {
-      console.error('Google sign-in error:', error);
-      setNotification('Google sign-in failed. Please try again.');
+      console.error("Google sign-in error:", error);
+      setNotification("Google sign-in failed. Please try again.");
       dispatch(loginFailure());
     }
   };
@@ -83,8 +86,8 @@ const LogIn = () => {
     try {
       signInWithRedirect(auth, facebookProvider);
     } catch (error) {
-      console.error('Facebook sign-in error:', error);
-      setNotification('Facebook sign-in failed. Please try again.');
+      console.error("Facebook sign-in error:", error);
+      setNotification("Facebook sign-in failed. Please try again.");
       dispatch(loginFailure());
     }
   };
@@ -101,20 +104,22 @@ const LogIn = () => {
             placeholder="Email"
             className="w-full p-2 border rounded"
             value={loginData.email}
-            onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+            onChange={(e) =>
+              setLoginData({ ...loginData, email: e.target.value })
+            }
           />
           <input
             type="password"
             placeholder="Password"
             className="w-full p-2 border rounded"
             value={loginData.password}
-            onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+            onChange={(e) =>
+              setLoginData({ ...loginData, password: e.target.value })
+            }
           />
           <div className="flex items-center gap-2 text-[#767676]">
             <input type="checkbox" />
-            <span>
-              Remember Me{" "}
-            </span>
+            <span>Remember Me </span>
           </div>
           <div className="flex justify-center">
             <button
@@ -126,10 +131,14 @@ const LogIn = () => {
           </div>
           <div className="flex justify-between">
             <p className="text-[#c0876a] text-[13px]">
-              <a href="/signup" className="underline">Don’t have an account?</a>
+              <a href="/signup" className="underline">
+                Don’t have an account?
+              </a>
             </p>
             <p className="text-[#c0876a] text-[13px]">
-              <a href="/forgotpassword" className="underline">Forgot password?</a>
+              <a href="/forgotpassword" className="underline">
+                Forgot password?
+              </a>
             </p>
           </div>
           <div className="flex justify-center">
@@ -145,7 +154,8 @@ const LogIn = () => {
               <img
                 className="relative mr-4"
                 alt="Google Logo"
-                src="./images/Google.svg" />
+                src="./images/Google.svg"
+              />
               LOG IN WITH GOOGLE
             </button>
           </div>
@@ -156,13 +166,20 @@ const LogIn = () => {
               value="Sign In"
               onClick={facebookSignIn}
             >
-              <FaFacebook size={30} color="blue" style={{ marginRight: "15px", marginLeft: "20px" }} />
+              <FaFacebook
+                size={30}
+                color="blue"
+                style={{ marginRight: "15px", marginLeft: "20px" }}
+              />
               LOG IN WITH FACEBOOK
             </button>
           </div>
         </form>
       </div>
-      <Notification message={notification} onClose={() => setNotification('')} />
+      <Notification
+        message={notification}
+        onClose={() => setNotification("")}
+      />
     </div>
   );
 };
