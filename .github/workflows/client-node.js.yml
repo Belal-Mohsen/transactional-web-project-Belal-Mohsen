@@ -23,6 +23,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: client/node_modules
+        key: ${{ runner.os }}-client-modules-${{ hashFiles('client/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-client-modules-
     - name: Install Dependencies
       working-directory: ./client
       run: npm ci
