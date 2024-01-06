@@ -1,23 +1,16 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import ImageComponent from './ImageComponent';
 
 const Subscribe = () => {
   let { state } = useLocation();
-  console.log(state);
 
   let imageName = GetImageName(state.value);
-
-  console.log(imageName);
-
-  const sourceImage = `./images/Subscribe_img/${imageName}.png`;
+ 
   return (
-    <div className="flex justify-center items-center w-full h-screen"> {/* Centered container */}
-      <div className="text-center">
-        <img
-          className="mx-auto" 
-          src={sourceImage}
-          alt="Subscription"
-        />
+    <div className="flex justify-center items-center w-full h-screen"> 
+      <div className="text-center">      
+        <ImageComponent imageName={imageName}/>
       </div>
     </div>
   );
@@ -25,11 +18,7 @@ const Subscribe = () => {
 
 const GetImageName = (selectedImages) => {
   let imageName = "";
-  console.log("GetImageName");
-  console.log(selectedImages[1][0]);
-  console.log(selectedImages[2][0]);
-  console.log(selectedImages[3][0]);
-  console.log(selectedImages[4][0]);
+ 
   switch (selectedImages[2][0]) {
     case 4:
       imageName += "dining";

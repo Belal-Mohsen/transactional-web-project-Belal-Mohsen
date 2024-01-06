@@ -2,8 +2,6 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 
-
-
 import connectDB from './config/connectdb.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
@@ -19,7 +17,7 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/order', orderRoutes);
 app.use('/box', boxRoutes);
-app.use('/checkout-session', stripeRoutes)
+app.use('/checkout-session', stripeRoutes);
 
 // For testing
 app.get('/', async (req, res) => {
@@ -27,6 +25,20 @@ app.get('/', async (req, res) => {
         message: 'Hello from Our server',
     });
 });
+
+/// TODO : move this get api to another file.
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.get('/images', (req, res) => {
+    // Replace 'path_to_image.jpg' with the path to your image file
+    let contentDir = path.join(__dirname, 'content/Subscribe_img/');
+    // Retrieving image name from get query
+    res.sendFile(req.query.name+'.png', { root: contentDir });
+    });
 
 
 const startServer = async () => {
