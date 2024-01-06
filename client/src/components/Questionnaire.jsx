@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Questionnaire = () => {
   const [selectedImages, setSelectedImages] = useState({
@@ -226,11 +227,13 @@ const Questionnaire = () => {
           SAVE
         </button>
 
+
         <button
           className="p-2 bg-[#c0876a] rounded text-white text-[22px] mt-4 mb-8"
           onClick={() => generateImagesFromApi()}
         >
-          GENERATE IMAGES
+        <Link to="/subscribe" className="hover:[color:#7d5844]"  state={{ value: selectedImages }} >GENERATE IMAGES</Link>
+          
         </button>
       </div>
     </div>

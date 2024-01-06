@@ -14,7 +14,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import PaymentCancelPage from './pages/PaymentCancelPage';
-//import SubscribePage from './pages/SubscribePage';
+import SubscribePage from './pages/SubscribePage';
 import ChatBot from "./components/ChatBot";
 import { StrictMode } from 'react';
 
@@ -33,7 +33,8 @@ function App() {
               <Route path="/contactus" element={<ContactUsPage />} />
               <Route path="/calendar" element={<CalendarPage />} />
               <Route path="/faq" element={<FaqPage />} />
-              <Route path="/subscribe" element={<QuestionnairePage />} />
+              <Route path="/subscribe" element={<SubscribePage />} />
+              <Route path="/questionnaire" element={<QuestionnairePage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/success" element={<PaymentSuccessPage />} />
               <Route path="/cancel" element={<PaymentCancelPage />} />

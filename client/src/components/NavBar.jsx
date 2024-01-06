@@ -27,7 +27,7 @@ const NavBar = () => {
         </Link>
         <div className="z-10 hidden md:flex gap-16 [font-family:'Inria_Serif',Helvetica] font-bold [color:#342f19] text-lg ">
           <Link to="/" className="hover:[color:#7d5844]">Home</Link>
-          <Link to="/subscribe" className="hover:[color:#7d5844]">Subscribe</Link>
+          <Link to="/questionnaire" className="hover:[color:#7d5844]">Subscribe</Link>
           <Link to="/faq" className="hover:[color:#7d5844]">FAQ</Link>
           <Link to="/calendar" className="hover:[color:#7d5844]">Calendar</Link>
           <Link to="/contactus" className="hover:[color:#7d5844]">Contact Us</Link>
