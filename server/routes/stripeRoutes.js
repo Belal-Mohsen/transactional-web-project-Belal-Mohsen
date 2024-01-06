@@ -30,8 +30,8 @@ router.route('/').post(async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'http://localhost:3000/success',
-            cancel_url: 'http://localhost:3000/cancel',
+            success_url: 'https://main.d2ctub1uon7ubc.amplifyapp.com/success',
+            cancel_url: 'https://main.d2ctub1uon7ubc.amplifyapp.com/cancel',
         });
 
         res.json({ id: session.id });
