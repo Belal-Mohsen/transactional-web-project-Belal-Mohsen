@@ -29,7 +29,10 @@ jobs:
         SOURCE: "server/"
         TARGET: ${{ secrets.REMOTE_TARGET_SERVER }}
         EXCLUDE: '/node_modules/*,/.git/*,/.github/*,/tests/*,/*.md'
-        
+  
+  serve:
+    runs-on: ubuntu-latest
+    steps:
     - name: Install Dependencies and Restart Server
       uses: appleboy/ssh-action@master
       with:
