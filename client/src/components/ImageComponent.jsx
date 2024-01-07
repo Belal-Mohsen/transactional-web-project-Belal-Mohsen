@@ -4,7 +4,7 @@ const ImageComponent = (imageName) => {
   const [imageUrl, setImageUrl] = useState('');
   
   useEffect(() => {
-    fetch(`http://localhost:5001/images?name=${imageName.imageName}`)
+    fetch(`/api/images?name=${imageName.imageName}`)
       .then(response => response.blob())
       .then(blob => {
         const url = URL.createObjectURL(blob);

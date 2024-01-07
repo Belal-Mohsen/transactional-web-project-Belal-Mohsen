@@ -39,7 +39,7 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.get('/images', (req, res) => {
+app.get('/api/images', (req, res) => {
     // Replace 'path_to_image.jpg' with the path to your image file
     let contentDir = path.join(__dirname, 'content/Subscribe_img/');
     // Retrieving image name from get query
