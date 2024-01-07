@@ -5,9 +5,35 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import Shadow from "../components/Shadow";
 import Subscribe from "../components/Subscribe";
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../actions/cartActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SubscribePage = () => {
-  return (
+  
+    const SubscribeBoxes = 
+      {
+        id: 1,
+        name: 'SubscribeBox',
+        price: '69',
+        image: './images/christmasBox.png'
+      };
+  
+    const dispatch = useDispatch();
+    const handleClick = () => {
+      dispatch(addItemToCart({
+        id: SubscribeBoxes.id,
+        name: SubscribeBoxes.name,
+        price: SubscribeBoxes.price,
+        image: SubscribeBoxes.image
+      }));
+      toast.success(`${SubscribeBoxes.name} added to cart!`, {
+        position: "top-right",
+        autoClose: 1000,
+      });
+    };
+    return (
     <div className="flex flex-col min-h-screen bg-white">
       <TopBanner />
       <NavBar />
@@ -21,14 +47,20 @@ const SubscribePage = () => {
         <Subscribe />
       </div>
 
-      <button className="w-full md:w-auto px-6 py-3 bg-[#c0876a] rounded text-black font-bold text-[18px] md:text-[32px] mt-4 mx-auto md:mb-6">
+      <button onClick={() => handleClick()} className="w-full md:w-auto px-6 py-3 bg-[#c0876a] rounded text-black font-bold text-[18px] md:text-[32px] mt-4 mx-auto md:mb-6">
         SUBSCRIBE
       </button>
+      
 
       <Newsletter />
       <Footer />
+    <ToastContainer />
+
     </div>
+    
   );
+ 
+  
 };
 
 export default SubscribePage;
