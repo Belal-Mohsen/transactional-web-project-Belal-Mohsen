@@ -3,6 +3,7 @@ UnBox Holidays API Documentation
 Endpoint: /api/box/allboxes
 
 Overview
+
 UnBox Holidays introduces the /api/box/allboxes endpoint, designed to provide basic information about our holiday box products while ensuring customer data confidentiality.
 
 Endpoint Details
