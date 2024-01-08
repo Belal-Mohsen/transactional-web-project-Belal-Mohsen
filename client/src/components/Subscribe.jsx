@@ -9,10 +9,13 @@ const Subscribe = () => {
  
   return (
     <div className="flex justify-center items-center w-full h-screen"> 
-      <div className="text-center">      
-        <ImageComponent imageName={imageName}/>
+      <div className="text-center">   
+        <div style={{ transform: 'scale(0.8)' }}>   
+          <ImageComponent imageName={imageName}/>
+        </div>
       </div>
     </div>
+
   );
 };
 
