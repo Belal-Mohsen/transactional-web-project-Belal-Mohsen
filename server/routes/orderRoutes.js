@@ -1,13 +1,11 @@
 import express from 'express';
-import Order from '../models/order.js'; 
+import Order from '../models/order.js';
 
 const router = express.Router();
 
-// POST: Create a new order
-router.route('/order').post(async (req, res) => {
-    // Extract data from req.body and validate
-    const { shippingCompany, boxId, userId, paymentId, address, date } = req.body;
-    // Individual field validations
+router.post('/addorder', async (req, res) => {
+    const { shippingCompany, boxId, userId, paymentDetails, address, date } = req.body;
+
     if (!shippingCompany) {
         return res.status(400).json({ success: false, message: 'Shipping company is required' });
     }
@@ -17,44 +15,45 @@ router.route('/order').post(async (req, res) => {
     if (!userId) {
         return res.status(400).json({ success: false, message: 'User ID is required' });
     }
-    if (!paymentId) {
-        return res.status(400).json({ success: false, message: 'Payment ID is required' });
+    if (!paymentDetails) {
+        return res.status(400).json({ success: false, message: 'Payment details are required' });
     }
     if (!address) {
         return res.status(400).json({ success: false, message: 'Address is required' });
     }
 
     try {
-        const newOrder = await Order.create({ 
-            shippingCompany, 
-            boxId, 
-            userId, 
-            paymentId, 
-            address, 
-            date 
+        const newOrder = await Order.create({
+            shippingCompany,
+            boxId,
+            userId,
+            paymentDetails,
+            address,
+            date: date || Date.now()
         });
 
         res.status(201).json({ success: true, data: newOrder });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).json({ success: false, message: 'Unable to create an order, please try again' });
     }
 });
 
-// PUT: Update a specific order
-router.put('/updateOrder/:orderId', async (req, res) => {
+
+router.put('/updateorder/:orderId', async (req, res) => {
+    const { shippingCompany, boxId, userId, paymentDetails, address, date } = req.body;
+    const orderId = req.params.orderId;
+
     try {
-        const { shippingCompany, boxId, userId, paymentId, address, date } = req.body;
-        const orderId = req.params.orderId;
         const updatedOrder = await Order.findOneAndUpdate(
-            { orderId }, 
-            { 
-                shippingCompany, 
-                boxId, 
-                userId, 
-                paymentId, 
-                address, 
-                date 
+            { _id: orderId },
+            {
+                shippingCompany,
+                boxId,
+                userId,
+                paymentDetails,
+                address,
+                date
             },
             { new: true }
         );
@@ -65,9 +64,9 @@ router.put('/updateOrder/:orderId', async (req, res) => {
             res.status(404).json({ success: false, message: 'Order not found' });
         }
     } catch (err) {
+        console.log(err);
         res.status(500).json({ success: false, message: 'Unable to update the order, please try again' });
     }
 });
-
 
 export default router;
