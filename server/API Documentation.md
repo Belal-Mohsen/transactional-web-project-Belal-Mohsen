@@ -15,19 +15,11 @@ Data Format: JSON
 Response Example:
 
 {
-
 "success": true,
-
 "data": [
-
 { "name": "Thanksgiving", "price": 99 },
-
 { "name": "New Year", "price": 99 },
-
 { "name": "Christmas", "price": 99 },
-
 { "name": "Easter", "price": 99 }
-
 ]
-
 }
