@@ -26,12 +26,32 @@ app.get('/api', async (req, res) => {
     });
 });
 
-app.get('/test', async (req, res) => {
-    res.status(200).json({
-        message: 'test end-point from the server!',
-    });
-});
+// Our API ///////////////////////////////////////////////////
+// End-Point: "/api/box/allboxes"
+// Return:
 
+// {
+//     "success": true,
+//     "data": [
+//     {
+//     "name": "Thanksgiving",
+//     "price": 99
+//     },
+//     {
+//     "name": "New Year",
+//     "price": 99
+//     },
+//     {
+//     "name": "Christmas",
+//     "price": 99
+//     },
+//     {
+//     "name": "Easter",
+//     "price": 99
+//     }
+//     ]
+//     }
+///////////////////////////////////////////////////////////////
 /// TODO : move this get api to another file.
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -43,8 +63,8 @@ app.get('/api/images', (req, res) => {
     // Replace 'path_to_image.jpg' with the path to your image file
     let contentDir = path.join(__dirname, 'content/Subscribe_img/');
     // Retrieving image name from get query
-    res.sendFile(req.query.name+'.png', { root: contentDir });
-    });
+    res.sendFile(req.query.name + '.png', { root: contentDir });
+});
 
 
 const startServer = async () => {
