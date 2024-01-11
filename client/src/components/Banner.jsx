@@ -13,7 +13,7 @@ const Banner = () => {
             Celebrate the Seasons with Surprise!
           </p>
           <Link
-            to="/subscribe"
+            to="/questionnaire"
             className="border-2 rounded-[5px] [font-family:'Inria_Serif',Helvetica] border-[#c0876a] text-[#c0876a] font-bold py-2 px-4 inline-block"
           >
             Discover Now

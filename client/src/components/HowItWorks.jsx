@@ -28,7 +28,7 @@ const HowItWorks = () => {
       </div>
       <div className="flex justify-center gap-4 mb-4">
         <Link
-          to="/subscribe"
+          to="/questionnaire"
           className="text-[#c0876a] text-[16px]  [font-family:'Inria_Serif',Helvetica] border-2 border-solid border-[#c0876a] font-bold py-2 px-2 rounded-[5px] mr-10"
         >
           GET STARTED
