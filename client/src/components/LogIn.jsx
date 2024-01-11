@@ -77,7 +77,7 @@ const LogIn = () => {
       signInWithRedirect(auth, provider);
     } catch (error) {
       console.error("Google sign-in error:", error);
-     // setNotification("Google sign-in failed. Please try again.");
+      setNotification("Google sign-in failed. Please try again.");
       dispatch(loginFailure());
     }
   };
@@ -87,7 +87,7 @@ const LogIn = () => {
       signInWithRedirect(auth, facebookProvider);
     } catch (error) {
       console.error("Facebook sign-in error:", error);
-      //setNotification("Facebook sign-in failed. Please try again.");
+      setNotification("Facebook sign-in failed. Please try again.");
       dispatch(loginFailure());
     }
   };
@@ -146,7 +146,7 @@ const LogIn = () => {
           </div>
           <div>
             <button
-              type="submit"
+              type="button"
               className=" flex justify-center w-full bg-[#ffffff] text-[#767676] rounded border py-2 mt-4"
               value="Sign In"
               onClick={googleSignIn}
@@ -161,7 +161,7 @@ const LogIn = () => {
           </div>
           <div>
             <button
-              type="submit"
+              type="button"
               className=" flex justify-center w-full bg-[#ffffff] text-[#767676] rounded border py-2 mt-4"
               value="Sign In"
               onClick={facebookSignIn}
