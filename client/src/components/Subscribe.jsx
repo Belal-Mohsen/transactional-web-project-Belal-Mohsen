@@ -6,12 +6,12 @@ const Subscribe = () => {
   let { state } = useLocation();
 
   let imageName = GetImageName(state.value);
- 
+
   return (
-    <div className="flex justify-center items-center w-full h-screen"> 
-      <div className="text-center">   
-        <div style={{ transform: 'scale(0.8)' }}>   
-          <ImageComponent imageName={imageName}/>
+    <div className="flex justify-center items-center w-full h-screen">
+      <div className="text-center">
+        <div style={{ transform: 'scale(0.8)' }}>
+          <ImageComponent imageName={imageName} />
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@ const Subscribe = () => {
 
 const GetImageName = (selectedImages) => {
   let imageName = "";
- 
+
   switch (selectedImages[2][0]) {
     case 4:
       imageName += "dining";
