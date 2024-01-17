@@ -11,7 +11,7 @@ const Subscribe = () => {
     <div className="flex justify-center items-center w-full h-screen"> 
       <div className="text-center">   
         <div style={{ transform: 'scale(0.8)' }}>   
-          <ImageComponent imageName={imageName}/>
+          <ImageComponent imageName={imageName} style={{ width: '50vw', height: 'auto' }}/>
         </div>
       </div>
     </div>
