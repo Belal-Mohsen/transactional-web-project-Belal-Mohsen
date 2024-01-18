@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(""); // For showing response messages
+  const { t } = useTranslation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,19 +28,19 @@ const Newsletter = () => {
   return (
     <div className="w-full bg-[#f7eade] text-center py-6">
       <p className="font-semibold text-lg text-[#342f19cc]">
-        SIGN UP FOR FESTIVE UPDATES.
+      {t("signUpUpdatesTitle")}
       </p>
       <form onSubmit={handleSubmit} className="mt-4 flex justify-center items-center">
         <input
           type="email"
-          placeholder="Email"
+          placeholder= {t("signUpUpdatesEmail")}
           className="p-2 border rounded-l mr-6 w-1/5"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <button type="submit" className="p-2 bg-[#c0876a] text-white rounded-[5px] px-4">
-          SUBMIT
+        {t("signUpUpdatesSubmitButton")}
         </button>
       </form>
       {message && <p className="mt-2">{message}</p>} {/* Display response message */}

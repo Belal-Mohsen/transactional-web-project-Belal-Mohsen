@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const OurStory = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col md:flex-row">
       <div className="md:w-1/2">
@@ -13,36 +16,28 @@ const OurStory = () => {
       </div>
       <div className="md:w-1/2 bg-[#DFC2B4] p-4 md:p-8 flex flex-col justify-center  rounded-tr-10 rounded-br-10">
         <h2 className="text-2xl md:text-3xl mb-4 [font-family:italianno,Helvetica,sans-serif] font-normal text-[#342f19] text-[48px] text-center tracking-[0] leading-[normal]">
-          Our Story
+          {t("ourStoryTitle")}
         </h2>
         <p className="mb-4 [font-family:'Inter-Light',Helvetica] font-normal text-[#342f19] text-[16px] tracking-[0] leading-[normal]">
-          <span className="font-light">Founded by Chelsea, </span>
+          <span className="font-light">{t("ourStoryTextBeginning")}</span>
           <span className="[font-family:'Inter-SemiBold',Helvetica] font-semibold italic">
-            Unbox Holidays
+            {t("businessName")}
           </span>
           <span className="font-light">
             {" "}
-            is inspired by a childhood filled with joyous family holiday
-            celebrations. Each year, my large family would gather to decorate
-            our home, creating memories that have lasted a lifetime. These
-            moments of togetherness and festivity are at the heart of our
-            business.
+            {t("ourStoryTextEndOfFirstParagraph")}
             <br />
             <br />
-            At{" "}
+            {t("ourStorySecondParagraphBeginning")}
           </span>
           <span className="[font-family:'Inter-SemiBold',Helvetica] font-semibold italic">
-            Unbox Holidays
+            {t("businessName")}
           </span>
           <span className="font-light">
-            , we aim to share this joy through our holiday decoration blind
-            boxes. Each box is a collection of happiness, a way to bring
-            families together just as mine came together. We believe in making
-            every celebration special and memorable.
+            {t("ourStorySecondParagraphEnding")}
             <br />
             <br />
-            Join us in spreading the joy of holidays and creating new
-            traditions, one decoration at a time.
+            {t("ourStoryThirdParagraph")}
           </span>
         </p>
         <button className="mx-auto w-[130px] py-1 px-1 rounded-[5px] border border-solid border-[#c0876a] box-border">
@@ -50,7 +45,7 @@ const OurStory = () => {
             to="/contactus"
             className="[font-family:'Inria_Serif',Helvetica] font-bold text-[#c0876a] text-[16px] leading-[normal] no-underline"
           >
-            CONTACT US
+            {t("contactUsButton")}
           </Link>
         </button>
       </div>

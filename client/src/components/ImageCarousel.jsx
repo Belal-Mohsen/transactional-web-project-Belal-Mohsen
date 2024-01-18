@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const images = [
   "./images/image1.png",
@@ -29,13 +30,14 @@ const ImageCarousel = () => {
     prevArrow: <FaChevronCircleLeft color="#E7D5CA" />,
   };
 
+  const { t } = useTranslation();
   return (
     <div className="container mx-auto py-6">
       <h2 className="text-2xl font-bold text-center mb-4">
         <span
           style={{ fontFamily: "'Inria Serif', Helvetica", color: "#342f19" }}
         >
-          Previous
+          {t("imageCarouselTitlePrevious")}
         </span>{" "}
         <span
           style={{
@@ -44,7 +46,7 @@ const ImageCarousel = () => {
             fontSize: "48px",
           }}
         >
-          Boxes
+          {t("imageCarouselTitleBoxes")} 
         </span>
       </h2>
 

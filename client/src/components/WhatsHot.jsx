@@ -4,26 +4,28 @@ import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../actions/cartActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from "react-i18next";
 
 const WhatsHot = () => {
+  const { t } = useTranslation();
 
   const holidayBoxes = [
     {
       id: 1,
-      name: 'Christmas Box',
+      name: t("christmasBoxProductName"),
       price: '69',
       discount: '55',
       image: './images/christmasBox.png'
     },
     {
       id: 2,
-      name: 'New Year Box',
+      name: t("newYearBoxProductName"),
       price: '69',
       image: './images/newyearBox.png'
     },
     {
       id: 3,
-      name: 'Valentine Box',
+      name: t("valentineBoxProductName"),
       price: '69',
       image: './images/valentineBox.png'
     }
@@ -44,17 +46,15 @@ const WhatsHot = () => {
     });
   };
 
+
   return (
     <div className="max-w-7xl mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <div className="flex-grow text-center">
           <h2 className="[font-family:'Inria_Serif',Helvetica] text-2xl font-bold">
-            WHAT'S HOT
+          {t("whatsHotTitle")}
           </h2>
         </div>
-        <a href="/questionnaire" className="text-base md:text-xs font-thin whitespace-nowrap">
-          GET STARTED {'>'}
-        </a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {holidayBoxes.map((holidayBox) => (
@@ -70,7 +70,7 @@ const WhatsHot = () => {
                   {holidayBox.name}
                 </h2>
                 <p className="text-[16px] font-light text-gray-600">
-                  from {holidayBox.discount ? (
+                {t("fromPriceLabel")} {holidayBox.discount ? (
                     <>
                       {' '}
                       <span className="text-red-600 line-through">
