@@ -5,11 +5,14 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
+
 
 import Collapsible from "react-collapsible";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
+  
 
   return (
     <div
@@ -81,6 +84,7 @@ class ListTitle extends React.Component {
 
 export default function Faq() {
   const [value, setValue] = React.useState(0);
+  const { t } = useTranslation();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -101,8 +105,8 @@ export default function Faq() {
           aria-label="basic tabs example"
           centered="true"
         >
-          <Tab label="How it Works" {...a11yProps(0)} />
-          <Tab label="Billing & Shipping" {...a11yProps(1)} />
+          <Tab label={t("howItWorsLabel")} {...a11yProps(0)} />
+          <Tab label={t("billingShippingLabel")} {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel
@@ -111,42 +115,33 @@ export default function Faq() {
         style={{ backgroundColor: "#F7F6F2" }}
       >
         <Collapsible
-          trigger=<ListTitle title="What is Unbox Holidays?" />
+          trigger=<ListTitle title= {t("whatIsUnboxHolidaysTitle")} />
           triggerStyle={{ fontWeight: "bold" }}
         >
-          <p>
-            Welcome to Unbox Holidays! We curate and deliver decorations for the
-            holidays and seasons you love—whether they’re for your home,
-            vacation home, or business!
+          <p> {t("whatIsUnboxHolidaysText")}
+            
           </p>
           <p>
-            Our goal is to find the most on-trend, quality decorations and festive items— that you would
-            otherwise have to purchase from several different stores— and bring
-            them all to one convenient location: your box! It is
-            our mission to surprise, inspire and help you prepare for the
-            holiday—however that looks for you—so that you can stress less and
-            festive more!
+            {t("whatIsUnboxHolidaysTextEnding")}
+            
           </p>
         </Collapsible>
         <Collapsible
-          trigger=<ListTitle title="How many holidays/seasons do you offer? How much is each box?" />
+          trigger=<ListTitle title= {t("howManyHolidaysTitle")} />
           triggerStyle={{ fontWeight: "bold" }}
         >
-          <p>
-            We offer boxes for 4 seasons and 10 holidays. <br></br>
-
-                SEASONS: Spring, Summer, Fall, Winter <br></br>
-
-                HOLIDAYS: Valentine’s Day, St. Patrick’s Day, Easter Monday, Saint Jean Baptiste Day, Canada, Thanksgiving, Halloween, Christmas, New Year’s Eve <br></br>
+          <p> {t("howManyHolidaysTextBeginning")} <br></br> 
+          {t("howManyHolidaysTextSeasons")} <br></br>
+          {t("howManyHolidaysTextHolidays")} <br></br>
           </p>
         </Collapsible>
         <Collapsible
-          trigger=<ListTitle title="How does it work? Do I get to choose what comes in my boxes?" />
+          trigger=<ListTitle title={t("howDoesItWorkTitle")} />
           triggerStyle={{ fontWeight: "bold" }}
         >
           <p>
-          To start, you will take a simple 4-question Style Quiz to curate your decor style. 
-          Then, we will select the perfect products for you!
+          {t("howDoesItWorkText")}
+          
           </p>
         </Collapsible>
       </CustomTabPanel>
@@ -154,32 +149,28 @@ export default function Faq() {
       <CustomTabPanel value={value} index={1}
       style={{ backgroundColor: "#F7F6F2" }}>
         <Collapsible
-          trigger=<ListTitle title="How does payment work?" />
+          trigger=<ListTitle title={t("howDoesPaymentWorkitle")} />
           triggerStyle={{ fontWeight: "bold" }}
         >
-          <p>
-          Our convenient, flexible “Pay As You Go” billing option means you will be billed at the time that you choose/reserve your 
-          box for each holiday/season on your plan.  Your Unbox Holidays box subscriptions automatically renew each year. 
-          You can add or skip/cancel a box at any time in My Account.
+          <p> {t("howDoesPaymentWorkText")}
+         
           </p>
         </Collapsible>
         <Collapsible
-          trigger=<ListTitle title="How much is shipping?" />
+          trigger=<ListTitle title={t("howMuchIsShippingTitle")} />
           triggerStyle={{ fontWeight: "bold" }}
         >
-          <p>
-          Shipping is a flat rate of $12 for box.<br></br>
+          <p> {t("howMuchIsShippingTextBeginning")}<br></br>
 
-            We are a small business and while we wish we could cover the cost of shipping, it is simply not possible for us 
-            to do so and remain in business. Thank you for your understanding!
+          {t("howMuchIsShippingTextEnd")}
           </p>
         </Collapsible>
         <Collapsible
-          trigger=<ListTitle title="When will my box ship?" />
+          trigger=<ListTitle title={t("whenWillMyBoxShipTitle")} />
           triggerStyle={{ fontWeight: "bold" }}
         >
-          <p>
-          Please reference the CALENDAR Page for all of these important dates!
+          <p>{t("whenWillMyBoxShipText")}
+          
           </p>
         </Collapsible>
       </CustomTabPanel>

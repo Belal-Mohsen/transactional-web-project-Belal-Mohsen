@@ -52,7 +52,28 @@ i18n
           signUpUpdatesSubmitButton: "SUBMIT",
 
           footerMessage: "© UnboxHolidays 2024 | Privacy Policy | Terms of Use",
+
+          yourQuestionAnswered:"Your questions, answered",
+          howItWorsLabel:"How it Works",
+          billingShippingLabel:"Billing & Shipping",
+          whatIsUnboxHolidaysText:"Welcome to Unbox Holidays! We curate and deliver decorations for the holidays and seasons you love—whether they’re for your home,vacation home, or business!",
+          whatIsUnboxHolidaysTitle: "What is Unbox Holidays?",
+          whatIsUnboxHolidaysTextEnding:"Our goal is to find the most on-trend, quality decorations and festive items— that you would otherwise have to purchase from several different stores— and bring them all to one convenient location: your box! It is our mission to surprise, inspire and help you prepare for the holiday—however that looks for you—so that you can stress less and festive more!",
+          howManyHolidaysTitle:"How many holidays/seasons do you offer? How much is each box?",
+          howManyHolidaysTextBeginning:"We offer boxes for 4 seasons and 10 holidays",
+          howManyHolidaysTextSeasons:"SEASONS: Spring, Summer, Fall, Winter", 
+          howManyHolidaysTextHolidays:"HOLIDAYS: Valentine’s Day, St. Patrick’s Day, Easter Monday, Saint Jean Baptiste Day, Canada, Thanksgiving, Halloween, Christmas, New Year’s Eve",
+          howDoesItWorkTitle:"How does it work? Do I get to choose what comes in my boxes?",
+          howDoesItWorkText:"To start, you will take a simple 4-question Style Quiz to curate your decor style.Then, we will select the perfect products for you!",
+          howDoesPaymentWorkitle:"How does payment work?",
+          howDoesPaymentWorkText:"Our convenient, flexible “Pay As You Go” billing option means you will be billed at the time that you choose/reserve your box for each holiday/season on your plan.  Your Unbox Holidays box subscriptions automatically renew each year. You can add or skip/cancel a box at any time in My Account.",
+          howMuchIsShippingTitle:"How much is shipping?",
+          howMuchIsShippingTextBeginning:"Shipping is a flat rate of $12 for box.",
+          howMuchIsShippingTextEnd:"We are a small business and while we wish we could cover the cost of shipping, it is simply not possible for us to do so and remain in business. Thank you for your understanding!",
+          whenWillMyBoxShipTitle:"When will my box ship?",
+          whenWillMyBoxShipText:"Please reference the CALENDAR Page for all of these important dates!",
         },
+
       },
       fr: {
         translation: {
@@ -102,6 +123,27 @@ i18n
 
           footerMessage: "© UnboxHolidays 2024 | Politique de confidentialité | Conditions d'utilisation",
 
+          yourQuestionAnswered:"Vos questions, réponses",
+          howItWorsLabel:"Comment ça fonctionne",
+          billingShippingLabel:"Facturation et expédition",
+          whatIsUnboxHolidaysText:"Bienvenue sur Unbox Holidays ! Nous préparons et livrons des décorations pour les vacances et les saisons que vous aimez, qu'elles soient pour votre maison, votre maison de vacances ou votre entreprise !",
+          whatIsUnboxHolidaysTitle: "Qu’est-ce qu’Unbox Holidays ?",
+          whatIsUnboxHolidaysTextEnding:"Notre objectif est de trouver les décorations et les articles festifs les plus tendance et de qualité que vous auriez autrement dû acheter dans plusieurs magasins différents et de les amener tous dans un seul endroit pratique : votre boîte ! Notre mission est de vous surprendre, de vous inspirer et de vous aider à préparer les vacances, peu importe ce qui vous convient, afin que vous puissiez moins stresser et festif en plus !",
+          howManyHolidaysTitle:"Combien de vacances/saisons proposez-vous ? Combien coûte chaque boîte ?",
+          howManyHolidaysTextBeginning:"Nous proposons des coffrets pour 4 saisons et 10 vacances",
+          howManyHolidaysTextSeasons:"SAISONS : Printemps, Été, Automne, Hiver", 
+          howManyHolidaysTextHolidays:"JOURS FÉRIÉS : Saint-Valentin, Saint-Patrick, Lundi de Pâques, Saint-Jean-Baptiste, Canada, Action de grâces, Halloween, Noël, Réveillon du Nouvel An",
+          howDoesItWorkTitle:"Comment ça marche? Est-ce que je peux choisir ce qui entre dans mes cartons ?",
+          howDoesItWorkText:"Pour commencer, vous répondrez à un simple quiz de style en 4 questions pour définir votre style de décoration. Ensuite, nous sélectionnerons les produits parfaits pour vous !",
+          howDoesPaymentWorkitle:"Comment fonctionne le paiement ?",
+          howDoesPaymentWorkText:"Notre option de facturation pratique et flexible « Pay As You Go » signifie que vous serez facturé au moment où vous choisissez/réservez votre box pour chaque vacances/saison de votre forfait. Vos abonnements à la box Unbox Holidays se renouvellent automatiquement chaque année. Vous pouvez ajouter ou sauter/annuler une case à tout moment dans Mon compte.",
+          howMuchIsShippingTitle:"Combien coûte l'expédition ?",
+          howMuchIsShippingTextBeginning:"Les frais d'expédition sont forfaitaires de 12 $ par boîte.",
+          howMuchIsShippingTextEnd:"Nous sommes une petite entreprise et même si nous souhaitons pouvoir couvrir les frais d’expédition, il nous est tout simplement impossible de le faire et de rester en activité. Merci pour votre compréhension!",
+          whenWillMyBoxShipTitle:"Quand ma boîte sera-t-elle expédiée ?",
+          whenWillMyBoxShipText:"Veuillez consulter la page CALENDRIER pour toutes ces dates importantes !",
+
+        
         },
       },
     },
