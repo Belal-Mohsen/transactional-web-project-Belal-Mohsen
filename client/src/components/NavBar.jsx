@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsList, BsX } from 'react-icons/bs';
+import { BsList, BsX } from "react-icons/bs";
 import { PiShoppingCartDuotone } from "react-icons/pi";
 import { MdOutlineAccountCircle } from "react-icons/md";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const cartItems = useSelector(state => state.cart.items);
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const { t } = useTranslation();
 
   return (
     <div className="relative overflow-x-auto bg-white">
@@ -26,13 +33,24 @@ const NavBar = () => {
           />
         </Link>
         <div className="z-10 hidden md:flex gap-16 [font-family:'Inria_Serif',Helvetica] font-bold [color:#342f19] text-lg ">
-          <Link to="/" className="hover:[color:#7d5844]">Home</Link>
-          <Link to="/questionnaire" className="hover:[color:#7d5844]">Subscribe</Link>
-          <Link to="/faq" className="hover:[color:#7d5844]">FAQ</Link>
-          <Link to="/calendar" className="hover:[color:#7d5844]">Calendar</Link>
-          <Link to="/contactus" className="hover:[color:#7d5844]">Contact Us</Link>
+          <Link to="/" className="hover:[color:#7d5844]">
+            {t("homeButton")}
+          </Link>
+          <Link to="/questionnaire" className="hover:[color:#7d5844]">
+            {t("subscribeButton")}
+          </Link>
+          <Link to="/faq" className="hover:[color:#7d5844]">
+            {t("faqButton")}
+          </Link>
+          <Link to="/calendar" className="hover:[color:#7d5844]">
+            {t("calendarButton")}
+          </Link>
+          <Link to="/contactus" className="hover:[color:#7d5844]">
+            {t("contactUsButton")}
+          </Link>
         </div>
         <div className="z-10 flex gap-4">
+          <LanguageSwitcher />
           <Link to="/cart" className="relative">
             <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
             {totalItems > 0 && (
@@ -73,14 +91,24 @@ const NavBar = () => {
           {isMenuOpen && (
             <div>
               <ul className=" flex flex-col gap-2 p-4 z-20">
-                <Link to="/" className="hover:[color:#7d5844]">Home</Link>
-                <Link to="/subscribe" className="hover:[color:#7d5844]">Subscribe</Link>
-                <Link to="/faq" className="hover:[color:#7d5844]">FAQ</Link>
-                <Link to="/calendar" className="hover:[color:#7d5844]">Calendar</Link>
-                <Link to="/contactus" className="hover:[color:#7d5844]">Contact Us</Link>
-
+                <Link to="/" className="hover:[color:#7d5844]">
+                  {t("homeButton")}
+                </Link>
+                <Link to="/subscribe" className="hover:[color:#7d5844]">
+                  {t("subscribeButton")}
+                </Link>
+                <Link to="/faq" className="hover:[color:#7d5844]">
+                  {t("faqButton")}
+                </Link>
+                <Link to="/calendar" className="hover:[color:#7d5844]">
+                  {t("calendarButton")}
+                </Link>
+                <Link to="/contactus" className="hover:[color:#7d5844]">
+                  {t("contactUsButton")}
+                </Link>
               </ul>
-              <div className='flex pl-4 gap-4 pb-3'>
+              <div className="flex pl-4 gap-4 pb-3">
+                <LanguageSwitcher />
                 <Link to="/cart" className="relative">
                   <PiShoppingCartDuotone color="#7d5844" className="w-6 h-7" />
                   {totalItems > 0 && (
