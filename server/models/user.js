@@ -8,8 +8,8 @@ const subscriptionSchema = new Schema({
         required: true
     },
     area: {
-        type: String,
-        default: "Unknown",
+        type: [{ type: String }],
+        default: ["Unknown"],
         required: true
     },
     holidays: {
