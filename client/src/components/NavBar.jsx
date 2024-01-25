@@ -10,7 +10,8 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
-
+  
+ 
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
@@ -21,6 +22,8 @@ const NavBar = () => {
   };
 
   const { t } = useTranslation();
+
+  
 
   return (
     <div className="relative overflow-x-auto bg-white">
@@ -62,6 +65,11 @@ const NavBar = () => {
           <Link to="/myaccount">
             <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />
           </Link>
+         
+                <Link to="/admin" className="hover:[color:#7d5844]">
+                  Admin 
+                </Link>
+        
         </div>
       </div>
 

@@ -16,6 +16,7 @@ import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import PaymentCancelPage from './pages/PaymentCancelPage';
 import SubscribePage from './pages/SubscribePage';
 import ChatBot from "./components/ChatBot";
+import AdminPage from './pages/AdminPage';
 import { StrictMode } from 'react';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/login" element={<LogInPage />} />
               <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="/contactus" element={<ContactUsPage />} />
               <Route path="/calendar" element={<CalendarPage />} />
               <Route path="/faq" element={<FaqPage />} />
