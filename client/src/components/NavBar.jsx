@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { BsList, BsX } from "react-icons/bs";
 import { PiShoppingCartDuotone } from "react-icons/pi";
 import { MdOutlineAccountCircle } from "react-icons/md";
@@ -8,10 +9,34 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const NavBar = () => {
+  const user = useSelector(state => state.auth.user);
+  const [userInfo, setUserInfo] = useState(null);
+  const uid = user?.uid;
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!uid) return;
+
+      try {
+        const response = await axios.get(`/api/user/profile/${uid}`);
+        if (response.data.success) {
+          setUserInfo(response.data.data);
+        } else {
+          console.error('User not found or error fetching user data');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [uid]);
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
-  
- 
+
+
   const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
@@ -23,7 +48,7 @@ const NavBar = () => {
 
   const { t } = useTranslation();
 
-  
+
 
   return (
     <div className="relative overflow-x-auto bg-white">
@@ -65,11 +90,13 @@ const NavBar = () => {
           <Link to="/myaccount">
             <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />
           </Link>
-         
-                <Link to="/admin" className="hover:[color:#7d5844]">
-                  Admin 
-                </Link>
-        
+
+          {user && userInfo?.isAdmin && (
+            <Link to="/admin" className="hover:[color:#7d5844]">
+              Admin
+            </Link>
+          )}
+
         </div>
       </div>
 
@@ -128,6 +155,14 @@ const NavBar = () => {
                 <Link to="/myaccount">
                   <MdOutlineAccountCircle color="#7d5844" className="w-6 h-7" />
                 </Link>
+
+
+
+                {user && userInfo?.isAdmin && (
+                  <Link to="/admin" className="hover:[color:#7d5844]">
+                    Admin
+                  </Link>
+                )}
               </div>
             </div>
           )}
