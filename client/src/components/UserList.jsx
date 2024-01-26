@@ -13,8 +13,8 @@ const UserList = ({ users, onSelectItem }) => {
           className="p-4 hover:bg-gray-100 cursor-pointer border-b border-gray-300"
         >
           <p className="font-medium text-gray-700">ID: {user.id}</p>
-          <p className="text-gray-600">First Name: {user.firstName}</p>
-          <p className="text-gray-600">Last Name: {user.lastName}</p>
+          <p className="text-gray-600">First Name: {user.fName}</p>
+          <p className="text-gray-600">Last Name: {user.lName}</p>
           <p className="text-gray-600">Email: {user.email}</p>
           {/* Add other user details if needed */}
         </div>

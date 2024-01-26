@@ -30,7 +30,7 @@ const AdminPage = () => {
   useEffect(() => {
     const fetchBoxes = async () => {
       // Replace with your actual fetch request
-      const response = await fetch('/api/allboxes');
+      const response = await fetch('/api/box/allboxes');
       const data = await response.json();
       setBoxes(data.data);
     };
@@ -38,8 +38,9 @@ const AdminPage = () => {
     // Fetch users data from your API or database
     const fetchUsers = async () => {
       // Replace with your actual fetch request
-      const response = await fetch('/api/users'); // Update the endpoint as needed
+      const response = await fetch('/api/user/users'); // Update the endpoint as needed
       const data = await response.json();
+      console.log(data)
       setUsers(data.data);
     };
 
@@ -68,14 +69,14 @@ const AdminPage = () => {
       <Shadow />
       <div className="flex flex-1 items-center justify-center">
         <p className="w-[730px] h-[37px] mx-1 my-4 [font-family:'Inter-SemiBold',Helvetica] font-semibold text-[#342f19cc] text-[20px] text-center">
-            FOR ADMIN USE ONLY
+          FOR ADMIN USE ONLY
         </p>
       </div>
       <div className="admin-navigation" style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
         <div style={tabStyle} onClick={() => setActiveForm("box")}>Boxes</div>
         <div style={tabStyleUser} onClick={() => setActiveForm("user")}>Users</div>
       </div>
-      
+
       <div className="admin-content" style={{ margin: 'auto', maxWidth: '800px', minWidth: '500px' }}>
         {activeForm === "box" ? (
           <>
