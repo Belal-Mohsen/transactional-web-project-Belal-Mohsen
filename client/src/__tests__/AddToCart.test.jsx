@@ -4,7 +4,7 @@ import { ADD_TO_CART } from "../actions/cartActionTypes";
 import cartReducer from "../reducers/cartReducer";
 import { configureStore } from '@reduxjs/toolkit';
 
-it("should dispatch ADD_TO_CART when a new item is added", () => {
+it("should dispatch payload when a new item is added", () => {
   const mockStore = configureMockStore([]);
   const initialState = { cart: [] };
   const store = mockStore(initialState);
@@ -18,7 +18,7 @@ it("should dispatch ADD_TO_CART when a new item is added", () => {
   expect(actions).toEqual([expectedPayload]);
 });
 
-it("should increment quantity if item exists", () => {
+it("should dispatch payload when an existing item is added", () => {
   const mockStore = configureMockStore([]);
   const initialState = {
     cart: [
