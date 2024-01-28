@@ -53,9 +53,15 @@ router.route('/login').post(async (req, res) => {
 // update a user's info
 router.route('/updateUser/:uid').put(async (req, res) => {
     try {
-        const { fName, lName, email, address, newsLetter, subscription } = req.body;
+        const {
+            firstName: fName,
+            lastName: lName,
+            email,
+            address,
+            isNewsletter: newsLetter,
+            subscription
+        } = req.body;
         const uid = req.params.uid;
-        console.log(req.body)
 
         const updatedUser = await User.findOneAndUpdate(
             { uid },
@@ -66,7 +72,6 @@ router.route('/updateUser/:uid').put(async (req, res) => {
                 address,
                 newsLetter,
                 subscription
-
             },
             { new: true }
         );
@@ -79,7 +84,7 @@ router.route('/updateUser/:uid').put(async (req, res) => {
             res.status(404).json({ success: false, message: 'User not found' });
         }
     } catch (err) {
-        console.log(err)
+        console.log("Error updating user:", err);
         res.status(500).json({ success: false, message: 'Unable to update the user, please try again' });
     }
 });

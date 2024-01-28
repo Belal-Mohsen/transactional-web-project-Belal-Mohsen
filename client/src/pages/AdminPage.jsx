@@ -19,11 +19,23 @@ const AdminPage = () => {
   // Function to handle box item selection
   const handleSelectBox = (box) => {
     setSelectedBox(box);
+    setSelectedUser(null); // Reset selected user when a box is selected
   };
 
   // Function to handle user item selection
   const handleSelectUser = (user) => {
     setSelectedUser(user);
+    setSelectedBox(null); // Reset selected box when a user is selected
+  };
+
+  // Function to handle tab change
+  const handleTabChange = (formType) => {
+    setActiveForm(formType);
+    if (formType === "box") {
+      setSelectedUser(null);
+    } else if (formType === "user") {
+      setSelectedBox(null);
+    }
   };
 
   // Fetch boxes data from your API or database
@@ -40,7 +52,6 @@ const AdminPage = () => {
       // Replace with your actual fetch request
       const response = await fetch('/api/user/users'); // Update the endpoint as needed
       const data = await response.json();
-      console.log(data)
       setUsers(data.data);
     };
 
@@ -48,6 +59,22 @@ const AdminPage = () => {
     fetchUsers();
   }, []);
 
+  // Function to refresh the user list
+  const refreshUsers = async () => {
+    try {
+      console.log("Refreshing users...");
+      const response = await fetch('/api/user/users');
+      if (!response.ok) {
+        throw new Error('Failed to fetch users');
+      }
+      const data = await response.json();
+      setUsers(data.data); // Update the state with the new user data
+      console.log("Fetched users:", data.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+  
   const tabStyle = {
     padding: '10px 20px',
     cursor: 'pointer',
@@ -73,8 +100,8 @@ const AdminPage = () => {
         </p>
       </div>
       <div className="admin-navigation" style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-        <div style={tabStyle} onClick={() => setActiveForm("box")}>Boxes</div>
-        <div style={tabStyleUser} onClick={() => setActiveForm("user")}>Users</div>
+        <div style={tabStyle} onClick={() => handleTabChange("box")}>Boxes</div>
+        <div style={tabStyleUser} onClick={() => handleTabChange("user")}>Users</div>
       </div>
 
       <div className="admin-content" style={{ margin: 'auto', maxWidth: '800px', minWidth: '500px' }}>
@@ -85,7 +112,7 @@ const AdminPage = () => {
           </>
         ) : (
           <>
-            <UserForm user={selectedUser} />
+            <UserForm user={selectedUser} refreshUsers={refreshUsers} />
             <UserList users={users} onSelectItem={handleSelectUser} />
           </>
         )}

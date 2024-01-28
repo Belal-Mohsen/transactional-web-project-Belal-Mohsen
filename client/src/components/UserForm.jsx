@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const UserForm = () => {
+const UserForm = ({ user, refreshUsers }) => {
   const [formData, setFormData] = useState({
-    id: '',
     firstName: '',
     lastName: '',
     email: '',
     isNewsletter: false,
     isAdmin: false
   });
+
+  const [message, setMessage] = useState(''); // State for success/error messages
+  
+  // Update form state when user prop changes
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        firstName: user.fName || '',
+        lastName: user.lName || '',
+        email: user.email || '',
+        isNewsletter: user.newsLetter || false,  // Ensure this key matches your user object structure
+        isAdmin: user.isAdmin || false
+      });
+    }
+  }, [user]);  // Dependency array, re-run effect when user changes
+
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -19,17 +34,53 @@ const UserForm = () => {
     }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e, action) => {
-    e.preventDefault();
-    if (action === 'update') {
-      // Update user logic
-    } else if (action === 'delete') {
-      // Delete user logic
+ // Handle form submission
+ const handleSubmit = async (e, action) => {
+  e.preventDefault();
+  setMessage(''); // Clear previous messages
+
+  if (action === 'update' && user && user.uid) {
+    try {
+      const response = await fetch(`http://localhost:5001/api/user/updateUser/${user.uid}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('User updated successfully.');
+        refreshUsers(); // Refresh the user list
+      } else {
+        setMessage(data.message || 'Failed to update user.');
+      }
+    } catch (error) {
+      setMessage('Failed to update user.');
+      console.error('Error updating user:', error);
     }
+  } else if (action === 'delete' && user && user.uid) {
+    try {
+      const response = await fetch(`http://localhost:5001/api/user/deleteUser/${user.uid}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('User deleted successfully.');
+        refreshUsers(); // Refresh the user list
+      } else {
+        setMessage(data.message || 'Failed to delete user.');
+      }
+    } catch (error) {
+      setMessage('Failed to delete user.');
+      console.error('Error deleting user:', error);
+    }
+  }
+
     // Reset form after action
     setFormData({
-      id: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -42,17 +93,6 @@ const UserForm = () => {
     <div className="w-full max-w-2xl mx-auto bg-[#f7f6f2] rounded shadow-md p-6 my-20 border">
       <h2 className="text-2xl font-medium text-[#342f19] mb-4 text-center">User Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="id" className="block text-sm font-medium text-[#342f19]">ID</label>
-          <input
-            type="text"
-            name="id"
-            id="id"
-            value={formData.id}
-            onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-          />
-        </div>
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-[#342f19]">First Name</label>
           <input
@@ -117,8 +157,15 @@ const UserForm = () => {
           <button type="submit" onClick={(e) => handleSubmit(e, 'delete')} className="button-hover-effect m-4">Delete</button>
         </div>
       </form>
-    </div>
-  );
+    {/* Message display */}
+    {message && (
+                <div style={{ marginTop: '20px', color: 'red' }}>
+                    {message}
+                </div>
+            )}
+        </div>
+    );
 };
+
 
 export default UserForm;

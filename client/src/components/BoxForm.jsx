@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const BoxForm = () => {
   const [formData, setFormData] = useState({
-    id: '',
     name: '',
     price: '',
     image: null
@@ -32,7 +31,6 @@ const BoxForm = () => {
   
     // Reset form after action
     setFormData({
-      id: '',
       name: '',
       price: '',
       image: null
@@ -43,17 +41,6 @@ const BoxForm = () => {
     <div className="w-full max-w-2xl mx-auto bg-[#f7f6f2] rounded shadow-md p-6 my-10 border">
       <h2 className="text-2xl font-medium text-[#342f19] mb-4 text-center">Box Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="id" className="block text-sm font-medium text-[#342f19]">ID</label>
-          <input
-            type="text"
-            name="id"
-            id="id"
-            value={formData.id}
-            onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
-          />
-        </div>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-[#342f19]">Name</label>
           <input

@@ -8,11 +8,10 @@ const UserList = ({ users, onSelectItem }) => {
     <div className="overflow-y-auto max-h-96 border border-gray-300 rounded-md shadow-sm my-4">
       {safeUsers.map((user) => (
         <div
-          key={user.id}
+          key={user.uid}
           onClick={() => onSelectItem(user)}
           className="p-4 hover:bg-gray-100 cursor-pointer border-b border-gray-300"
         >
-          <p className="font-medium text-gray-700">ID: {user.id}</p>
           <p className="text-gray-600">First Name: {user.fName}</p>
           <p className="text-gray-600">Last Name: {user.lName}</p>
           <p className="text-gray-600">Email: {user.email}</p>
