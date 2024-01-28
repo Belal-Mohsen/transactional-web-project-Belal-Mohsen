@@ -78,7 +78,7 @@ const AdminPage = () => {
   // Function to refresh the box list
   const refreshBoxes = async () => {
     try {
-      const response = await fetch('/api/allboxes');
+      const response = await fetch('/api/box/allboxes');
       if (!response.ok) {
         throw new Error('Failed to fetch boxes');
       }

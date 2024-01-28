@@ -38,42 +38,79 @@ const BoxForm = ({ box, refreshBoxes }) => {
   };
 
   // Handle form submission
-  const handleSubmit = async (e, action) => {
-    e.preventDefault();
-    setMessage('');
+const handleSubmit = async (e, action) => {
+  e.preventDefault();
+  setMessage(''); // Clear previous messages
 
-    // Example for the update operation
-const url = action === 'add'
-? 'http://localhost:5001/api/addbox'
-: action === 'update'
-? `http://localhost:5001/api/box/updatebox/${box?._id}`  // Use box._id
-: `http://localhost:5001/api/box/deletebox/${box?._id}`;  // Use box._id
-
-    const options = {
-      method: action === 'add' || action === 'update' ? 'POST' : 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: action === 'add' || action === 'update' ? JSON.stringify(formData) : undefined,
-    };
-
+  if (action === 'update' && box && box._id) {
     try {
-      const response = await fetch(url, options);
-      const data = await response.json();
+      const response = await fetch(`http://localhost:5001/api/box/updatebox/${box._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      const data = await response.json();
       if (response.ok) {
-        const successMessage = action === 'add' ? 'Box added successfully.' : action === 'update' ? 'Box updated successfully.' : 'Box deleted successfully.';
-        setMessage(successMessage);
+        setMessage('Box updated successfully.');
         refreshBoxes(); // Refresh the box list
       } else {
-        setMessage(data.message || `Failed to ${action} box.`);
+        setMessage(data.message || 'Failed to update box.');
       }
     } catch (error) {
-      const errorMessage = `Failed to ${action} box.`;
-      setMessage(errorMessage);
-      console.error(errorMessage, error);
+      setMessage('Failed to update box.');
+      console.error('Error updating box:', error);
     }
-  };
+  } else if (action === 'delete' && box && box._id) {
+    try {
+      const response = await fetch(`http://localhost:5001/api/box/deletebox/${box._id}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('Box deleted successfully.');
+        refreshBoxes(); // Refresh the box list
+      } else {
+        setMessage(data.message || 'Failed to delete box.');
+      }
+    } catch (error) {
+      setMessage('Failed to delete box.');
+      console.error('Error deleting box:', error);
+    }
+  } else if (action === 'add') {
+    try {
+      const response = await fetch('http://localhost:5001/api/box/addbox', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('Box added successfully.');
+        refreshBoxes(); // Refresh the box list
+      } else {
+        setMessage(data.message || 'Failed to add box.');
+      }
+    } catch (error) {
+      setMessage('Failed to add box.');
+      console.error('Error adding box:', error);
+    }
+  }
+
+  // Reset form after action
+  setFormData({
+    name: '',
+    price: '',
+    image: null
+  });
+};
+
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-[#f7f6f2] rounded shadow-md p-6 my-10 border">
