@@ -29,12 +29,12 @@ router.route('/addbox').post(async (req, res) => {
 });
 
 // PUT: Update a specific box
-router.route('/updatebox/:boxId').put(async (req, res) => {
+router.route('/updatebox/:_id').put(async (req, res) => {
     try {
         const { name, price } = req.body;
-        const boxId = req.params.boxId;
-        const updatedBox = await Box.findOneAndUpdate(
-            { boxId },
+        const _id = req.params._id;  // Use _id
+        const updatedBox = await Box.findByIdAndUpdate(
+            { _id },  
             {
                 name,
                 price
@@ -53,10 +53,10 @@ router.route('/updatebox/:boxId').put(async (req, res) => {
 });
 
 // DELETE: Delete a specific box
-router.route('/deletebox/:boxId').delete(async (req, res) => {
+router.route('/deletebox/:_id').delete(async (req, res) => {
     try {
-        const boxId = req.params.boxId;
-        const deletedBox = await Box.findOneAndDelete({ boxId });
+        const _id = req.params._id;  // Use _id
+        const deletedBox = await Box.findByIdAndDelete(_id);  // Use _id
 
         if (deletedBox) {
             res.status(200).json({ success: true, message: 'Box deleted successfully' });
@@ -68,10 +68,9 @@ router.route('/deletebox/:boxId').delete(async (req, res) => {
     }
 });
 
-
 router.route('/allboxes').get(async (req, res) => {
     try {
-        const boxes = await Box.find({}).select('-_id name price');
+        const boxes = await Box.find({}).select('_id name price');
         res.status(200).json({ success: true, data: boxes });
     } catch (err) {
         res.status(500).json({ success: false, message: 'Unable to retrieve boxes, please try again' });

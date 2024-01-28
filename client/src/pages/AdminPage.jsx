@@ -74,6 +74,20 @@ const AdminPage = () => {
       console.error("Error fetching users:", error);
     }
   };
+
+  // Function to refresh the box list
+  const refreshBoxes = async () => {
+    try {
+      const response = await fetch('/api/allboxes');
+      if (!response.ok) {
+        throw new Error('Failed to fetch boxes');
+      }
+      const data = await response.json();
+      setBoxes(data.data); // Update the state with the new box data
+    } catch (error) {
+      console.error("Error fetching boxes:", error);
+    }
+  };
   
   const tabStyle = {
     padding: '10px 20px',
@@ -107,7 +121,7 @@ const AdminPage = () => {
       <div className="admin-content" style={{ margin: 'auto', maxWidth: '800px', minWidth: '500px' }}>
         {activeForm === "box" ? (
           <>
-            <BoxForm box={selectedBox} />
+            <BoxForm box={selectedBox} refreshBoxes={refreshBoxes} />
             <BoxList boxes={boxes} onSelectItem={handleSelectBox} />
           </>
         ) : (

@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const BoxForm = () => {
+const BoxForm = ({ box, refreshBoxes }) => {
   const [formData, setFormData] = useState({
     name: '',
     price: '',
     image: null
   });
+
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (box) {
+      setFormData({
+        name: box.name || '',
+        price: box.price || '',
+        image: box.image || null
+      });
+    } else {
+      // Reset form if no box is selected
+      setFormData({
+        name: '',
+        price: '',
+        image: null
+      });
+    }
+  }, [box]);
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -19,22 +38,41 @@ const BoxForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e, action) => {
+  const handleSubmit = async (e, action) => {
     e.preventDefault();
-    if (action === 'add') {
-      // Add box logic
-    } else if (action === 'update') {
-      // Update box logic
-    } else if (action === 'delete') {
-      // Delete box logic
+    setMessage('');
+
+    // Example for the update operation
+const url = action === 'add'
+? 'http://localhost:5001/api/addbox'
+: action === 'update'
+? `http://localhost:5001/api/box/updatebox/${box?._id}`  // Use box._id
+: `http://localhost:5001/api/box/deletebox/${box?._id}`;  // Use box._id
+
+    const options = {
+      method: action === 'add' || action === 'update' ? 'POST' : 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: action === 'add' || action === 'update' ? JSON.stringify(formData) : undefined,
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      if (response.ok) {
+        const successMessage = action === 'add' ? 'Box added successfully.' : action === 'update' ? 'Box updated successfully.' : 'Box deleted successfully.';
+        setMessage(successMessage);
+        refreshBoxes(); // Refresh the box list
+      } else {
+        setMessage(data.message || `Failed to ${action} box.`);
+      }
+    } catch (error) {
+      const errorMessage = `Failed to ${action} box.`;
+      setMessage(errorMessage);
+      console.error(errorMessage, error);
     }
-  
-    // Reset form after action
-    setFormData({
-      name: '',
-      price: '',
-      image: null
-    });
   };
 
   return (
@@ -79,6 +117,12 @@ const BoxForm = () => {
           <button onClick={(e) => handleSubmit(e, 'delete')} className="button-hover-effect m-4">Delete</button>
         </div>
       </form>
+      {/* Message display */}
+      {message && (
+        <div style={{ marginTop: '20px', color: 'red' }}>
+          {message}
+        </div>
+      )}
     </div>
   );
 };
