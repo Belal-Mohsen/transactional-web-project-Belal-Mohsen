@@ -2,7 +2,7 @@ import configureMockStore from "redux-mock-store";
 import { addItemToCart } from "../actions/cartActions";
 import { ADD_TO_CART } from "../actions/cartActionTypes";
 import cartReducer from "../reducers/cartReducer";
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
 it("should dispatch payload when a new item is added", () => {
   const mockStore = configureMockStore([]);
