@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif&display=swap');
+
+
+/* Existing button style */
+.button-hover-effect {
+    background-color: #c0876a; /* Original background color */
+    color: white;
+    width: 100%;
+    padding: 8px; /* Adjust padding as needed */
+    border-radius: 8px; /* Adjust border radius as needed */
+    margin-top: 16px; /* Adjust margin as needed */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.button-hover-effect:hover {
+    background-color: #a8755a; /* Darker shade for hover effect */
+    cursor: pointer; /* Changes the cursor to indicate clickable area */
+}

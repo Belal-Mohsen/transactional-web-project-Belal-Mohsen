@@ -1,0 +1,44 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Server Node.js CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**'
+      - '.github/workflows/server-node.js.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Deploy to EC2
+      uses: easingthemes/ssh-deploy@v5.0.0
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        SOURCE: "server/"
+        TARGET: ${{ secrets.REMOTE_TARGET_SERVER }}
+        EXCLUDE: '/node_modules/*,/.git/*,/.github/*,/tests/*,/*.md'
+  
+  serve:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - name: Install Dependencies and Restart Server
+      uses: appleboy/ssh-action@master
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        script: |
+          cd ${{ secrets.REMOTE_TARGET_SERVER }}
+          npm install --production
+          pm2 restart unbox-server
