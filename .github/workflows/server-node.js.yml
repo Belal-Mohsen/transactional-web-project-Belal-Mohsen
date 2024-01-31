@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Deploy to EC2
-      uses: easingthemes/ssh-deploy@v2.1.5
+      uses: easingthemes/ssh-deploy@v5.0.0
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}

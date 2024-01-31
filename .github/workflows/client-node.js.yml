@@ -19,15 +19,15 @@ jobs:
         node-version: [18.x]
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
     - name: Cache Node.js modules
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: client/node_modules
         key: ${{ runner.os }}-client-modules-${{ hashFiles('client/package-lock.json') }}
@@ -47,7 +47,7 @@ jobs:
         npm run build --if-present
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: client
         path: client/build
@@ -57,13 +57,13 @@ jobs:
     needs: build
     steps:
     - name: Download Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: client
         path: client/build
 
     - name: Deploy to EC2
-      uses: easingthemes/ssh-deploy@v2.1.5
+      uses: easingthemes/ssh-deploy@v5.0.0
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
